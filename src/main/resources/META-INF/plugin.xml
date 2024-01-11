@@ -7,6 +7,7 @@
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
     <name>Better Screenreader</name>
 
+    <depends>com.intellij.java</depends>
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor email="support@yourcompany.com" url="https://www.yourcompany.com">YourCompany</vendor>
 
@@ -26,8 +27,6 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
 
-<!--        <projectService serviceImplementation="com.hbk619.jetbrainsscreenreader.EditorCreationListener"-->
-<!--                        overrides="false"/>-->
     </extensions>
     <applicationListeners>
         <listener
@@ -35,4 +34,11 @@
                 topic="com.intellij.ide.AppLifecycleListener" />
     </applicationListeners>
 
+    <actions>
+        <action class="com.hbk619.jetbrainsscreenreader.debugging.DebugListener">
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="ctrl meta alt v"/>
+        </action>
+    </actions>
 </idea-plugin>
