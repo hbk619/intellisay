@@ -40,6 +40,7 @@ class CaretMoveListener() : CaretListener {
                 when (type) {
                     HighlightSeverity.WARNING -> handleWarning(previousLine, logicalLine)
                     HighlightSeverity.ERROR -> handleError(highlighter, caretOffset)
+                    else -> continue
                 }
 
                 LOG.info("Error on line " + (logicalLine + 1))
