@@ -28,6 +28,9 @@ class BreakpointsListener : XBreakpointListener<XBreakpoint<*>> {
                     val clip = AudioSystem.getClip()
                     clip.open(audioInputStream)
                     clip.start()
+                    while (clip.framePosition<clip.frameLength) {
+                        log.debug("Running sound $soundName")
+                    }
                 } catch (e: Exception) {
                     log.error(e)
                 }
