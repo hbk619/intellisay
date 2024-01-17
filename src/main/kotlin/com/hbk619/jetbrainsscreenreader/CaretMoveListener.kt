@@ -1,5 +1,6 @@
 package com.hbk619.jetbrainsscreenreader
 
+import com.hbk619.jetbrainsscreenreader.settings.AppSettingsState
 import com.hbk619.jetbrainsscreenreader.sound.Player
 import com.hbk619.jetbrainsscreenreader.sound.Sound
 import com.intellij.codeInsight.daemon.impl.HighlightInfo
@@ -38,8 +39,9 @@ class CaretMoveListener() : CaretListener {
                 if ( tooltip !is HighlightInfo) continue
 
                 val type = tooltip.type.getSeverity(null)
+                val appSettings = AppSettingsState.instance
                 when (type) {
-                    HighlightSeverity.WARNING -> handleWarning(previousLine, logicalLine)
+                    HighlightSeverity.WARNING -> handleWarning(previousLine, logicalLine, appSettings.warningsOn)
                     HighlightSeverity.ERROR -> handleError(highlighter, caretOffset)
                     else -> continue
                 }
@@ -72,8 +74,8 @@ class CaretMoveListener() : CaretListener {
         }
     }
 
-    private fun handleWarning(previousLine: Int, logicalLine: Int) {
-        if (previousLine != logicalLine) {
+    private fun handleWarning(previousLine: Int, logicalLine: Int, warningsEnabled: Boolean) {
+        if (previousLine != logicalLine && warningsEnabled) {
             playSound(Sound.WARNING)
         }
     }

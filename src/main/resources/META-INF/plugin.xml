@@ -26,6 +26,10 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable parentId="tools" instance="com.hbk619.jetbrainsscreenreader.settings.AppSettingsConfigurable"
+                                 id="com.hbk619.jetbrainsscreenreader.settings.AppSettingsConfigurable"
+                                 displayName="Intelli Say"/>
+        <applicationService serviceImplementation="com.hbk619.jetbrainsscreenreader.settings.AppSettingsState"/>
 
     </extensions>
     <applicationListeners>
@@ -39,6 +43,12 @@
             <keyboard-shortcut
                     keymap="$default"
                     first-keystroke="ctrl meta alt v"/>
+        </action>
+        <action class="com.hbk619.jetbrainsscreenreader.settings.WarningBeep"
+                text="Warning Beep">
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="ctrl meta alt w"/>
         </action>
     </actions>
 </idea-plugin>
