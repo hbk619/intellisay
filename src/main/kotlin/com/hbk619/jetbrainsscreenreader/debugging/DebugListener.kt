@@ -1,10 +1,9 @@
 package com.hbk619.jetbrainsscreenreader.debugging
 
+import com.hbk619.jetbrainsscreenreader.sound.Say
 import com.intellij.debugger.engine.JavaValue
 import com.intellij.debugger.engine.JavaValuePresentation
 import com.intellij.debugger.ui.impl.watch.WatchItemDescriptor
-import com.intellij.execution.configurations.GeneralCommandLine
-import com.intellij.execution.process.ScriptRunnerUtil
 import com.intellij.navigation.EmptyNavigatable
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -12,8 +11,6 @@ import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.progress.BackgroundTaskQueue
-import com.intellij.openapi.progress.ProgressIndicator
-import com.intellij.openapi.progress.Task.Backgroundable
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.NlsContexts.DialogMessage
 import com.intellij.openapi.vfs.VirtualFile
@@ -28,7 +25,6 @@ import com.intellij.xdebugger.frame.XValuePlace
 import com.intellij.xdebugger.frame.presentation.XValuePresentation
 import com.intellij.xdebugger.impl.breakpoints.XExpressionImpl
 import com.intellij.xdebugger.impl.ui.tree.nodes.XValueNodePresentationConfigurator
-import java.nio.charset.Charset
 import javax.swing.Icon
 
 
@@ -137,21 +133,8 @@ class DebugListener : AnAction() {
     }
 
     private fun say(value: String, project: Project?) {
-        val commands = listOf("say", value)
+        val s = Say(project, "Evaluating code", value)
 
-        val generalCommandLine = GeneralCommandLine(commands)
-        generalCommandLine.setCharset(Charset.forName("UTF-8"))
-        generalCommandLine.setWorkDirectory(project?.basePath ?: "")
-
-        queue.run(object : Backgroundable(null, "Evaluating code") {
-            override fun run(progressIndicator: ProgressIndicator) {
-                val output = ScriptRunnerUtil.getProcessOutput(generalCommandLine)
-                if (output.isEmpty()) {
-                    log.debug("Said $value")
-                } else {
-                    log.error("Something went wrong saying $value. Output is $output")
-                }
-            }
-        })
+        queue.run(s)
     }
 }

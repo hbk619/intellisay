@@ -1,5 +1,7 @@
 package com.hbk619.jetbrainsscreenreader
 
+import com.hbk619.jetbrainsscreenreader.sound.Player
+import com.hbk619.jetbrainsscreenreader.sound.Sound
 import com.intellij.codeInsight.daemon.impl.HighlightInfo
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.openapi.diagnostic.Logger
@@ -10,11 +12,7 @@ import com.intellij.openapi.editor.event.CaretListener
 import com.intellij.openapi.editor.impl.DocumentMarkupModel
 import com.intellij.openapi.editor.markup.RangeHighlighter
 import com.intellij.openapi.progress.BackgroundTaskQueue
-import com.intellij.openapi.progress.ProgressIndicator
-import com.intellij.openapi.progress.Task
 import com.intellij.xdebugger.impl.breakpoints.XBreakpointUtil
-import javax.sound.sampled.AudioInputStream
-import javax.sound.sampled.AudioSystem
 
 class CaretMoveListener() : CaretListener {
     private val LOG: Logger = Logger.getInstance(CaretMoveListener::class.java)
@@ -61,41 +59,26 @@ class CaretMoveListener() : CaretListener {
             val breakpoints =
                 XBreakpointUtil.findSelectedBreakpoint(project, editor)
             if (breakpoints.second != null) {
-                playSound("Funk.aiff")
+                playSound(Sound.BREAKPOINT)
             }
         }
     }
 
     private fun handleError(highlighter: RangeHighlighter, caretOffset: Int) {
         if (highlighter.textRange.containsOffset(caretOffset)) {
-            playSound("Submarine.aiff")
+            playSound(Sound.ERROR)
         } else {
-            playSound("Frog.aiff")
+            playSound(Sound.WARNING)
         }
     }
 
     private fun handleWarning(previousLine: Int, logicalLine: Int) {
         if (previousLine != logicalLine) {
-            playSound("Frog.aiff")
+            playSound(Sound.WARNING)
         }
     }
 
-    private fun playSound(soundName: String) {
-        queue.run(object : Task.Backgroundable(null, "Playing sound") {
-            override fun run(progressIndicator: ProgressIndicator) {
-                try {
-                    val path = CaretMoveListener::class.java.getResource("sounds/" + soundName)
-                    val audioInputStream: AudioInputStream = AudioSystem.getAudioInputStream(path)
-                    val clip = AudioSystem.getClip()
-                    clip.open(audioInputStream)
-                    clip.start()
-                    while (clip.framePosition<clip.frameLength) {
-                        LOG.debug("Running sound $soundName")
-                    }
-                } catch (e: Exception) {
-                    LOG.error(e)
-                }
-            }
-        })
+    private fun playSound(sound: Sound) {
+        queue.run(Player(null, "Playing sound", sound))
     }
 }
