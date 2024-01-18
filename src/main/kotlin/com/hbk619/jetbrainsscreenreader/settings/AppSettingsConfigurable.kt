@@ -29,6 +29,8 @@ internal class AppSettingsConfigurable : Configurable {
         val settings: AppSettingsState = AppSettingsState.instance
         var modified: Boolean = !mySettingsComponent?.soundsLocationText.equals(settings.soundsLocation)
         modified = modified or mySettingsComponent!!.isWarningBeepOn != settings.warningsOn
+        modified = modified or mySettingsComponent!!.isErrorBeepOn != settings.errorsOn
+        modified = modified or mySettingsComponent!!.isBreakpointBeepOn != settings.breakpointsOn
         return modified
     }
 
@@ -36,12 +38,16 @@ internal class AppSettingsConfigurable : Configurable {
         val settings: AppSettingsState = AppSettingsState.instance
         settings.soundsLocation = mySettingsComponent?.soundsLocationText ?: ""
         settings.warningsOn = mySettingsComponent?.isWarningBeepOn!!
+        settings.errorsOn = mySettingsComponent?.isErrorBeepOn!!
+        settings.breakpointsOn = mySettingsComponent?.isBreakpointBeepOn!!
     }
 
     override fun reset() {
         val settings: AppSettingsState = AppSettingsState.instance
         mySettingsComponent?.soundsLocationText = settings.soundsLocation
         mySettingsComponent?.isWarningBeepOn = settings.warningsOn
+        mySettingsComponent?.isErrorBeepOn = settings.errorsOn
+        mySettingsComponent?.isBreakpointBeepOn = settings.breakpointsOn
     }
 
     override fun disposeUIResources() {

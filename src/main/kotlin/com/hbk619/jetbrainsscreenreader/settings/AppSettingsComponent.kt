@@ -11,11 +11,15 @@ class AppSettingsComponent {
     val panel: JPanel
     private val soundsLocation = JBTextField()
     private val warningsOn = JBCheckBox("Beep on warning", true)
+    private val errorsOn = JBCheckBox("Beep on error", true)
+    private val breakpointsOn = JBCheckBox("Beep on breakpoint", true)
 
     init {
         panel = FormBuilder.createFormBuilder()
             .addLabeledComponent(JBLabel("Sounds location: "), soundsLocation, 1, false)
             .addComponent(warningsOn, 1)
+            .addComponent(errorsOn, 1)
+            .addComponent(breakpointsOn, 1)
             .addComponentFillVertically(JPanel(), 0)
             .panel
     }
@@ -33,5 +37,15 @@ class AppSettingsComponent {
         get() = warningsOn.isSelected
         set(newVal) {
             warningsOn.setSelected(newVal)
+        }
+    var isErrorBeepOn: Boolean
+        get() = errorsOn.isSelected
+        set(newVal) {
+            errorsOn.setSelected(newVal)
+        }
+    var isBreakpointBeepOn: Boolean
+        get() = breakpointsOn.isSelected
+        set(newVal) {
+            breakpointsOn.setSelected(newVal)
         }
 }

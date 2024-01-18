@@ -10,6 +10,8 @@ import com.intellij.util.xmlb.XmlSerializerUtil
 internal class AppSettingsState : PersistentStateComponent<AppSettingsState?> {
     var soundsLocation: String = ""
     var warningsOn: Boolean = true
+    var errorsOn: Boolean = true
+    var breakpointsOn: Boolean = true
 
     override fun getState(): AppSettingsState {
         return this

@@ -55,5 +55,17 @@
                     keymap="$default"
                     first-keystroke="ctrl meta alt w"/>
         </action>
+        <action class="com.hbk619.jetbrainsscreenreader.settings.ErrorBeep"
+                text="Error Beep">
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="ctrl meta alt e"/>
+        </action>
+        <action class="com.hbk619.jetbrainsscreenreader.settings.BreakpointBeep"
+                text="Breakpoint Beep">
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="ctrl meta alt b"/>
+        </action>
     </actions>
 </idea-plugin>

@@ -31,6 +31,7 @@ class CaretMoveListener() : CaretListener {
         val markupModel = DocumentMarkupModel.forDocument(document, e.editor.project, true)
         val highlighters = markupModel.allHighlighters
 
+        val appSettings = AppSettingsState.instance
         for (highlighter in highlighters) {
             if (highlighter.startOffset >= startOffset && highlighter.endOffset <= endOffset && highlighter.errorStripeTooltip != null) {
                 val column = caretModel.logicalPosition.column
@@ -39,10 +40,9 @@ class CaretMoveListener() : CaretListener {
                 if ( tooltip !is HighlightInfo) continue
 
                 val type = tooltip.type.getSeverity(null)
-                val appSettings = AppSettingsState.instance
                 when (type) {
                     HighlightSeverity.WARNING -> handleWarning(previousLine, logicalLine, appSettings.warningsOn)
-                    HighlightSeverity.ERROR -> handleError(highlighter, caretOffset)
+                    HighlightSeverity.ERROR -> handleError(highlighter, caretOffset, appSettings.errorsOn)
                     else -> continue
                 }
 
@@ -50,14 +50,14 @@ class CaretMoveListener() : CaretListener {
                 break
             }
         }
-        handleBreakpoints(e.editor, previousLine, logicalLine)
+        handleBreakpoints(e.editor, previousLine, logicalLine, appSettings.breakpointsOn)
 
         previousLine = logicalLine
     }
 
-    private fun handleBreakpoints(editor: Editor, previousLine: Int, currentLine: Int) {
+    private fun handleBreakpoints(editor: Editor, previousLine: Int, currentLine: Int, breakpointsOn: Boolean) {
         val project = editor.project
-        if (project != null && previousLine != currentLine) {
+        if (project != null && previousLine != currentLine && breakpointsOn) {
             val breakpoints =
                 XBreakpointUtil.findSelectedBreakpoint(project, editor)
             if (breakpoints.second != null) {
@@ -66,7 +66,8 @@ class CaretMoveListener() : CaretListener {
         }
     }
 
-    private fun handleError(highlighter: RangeHighlighter, caretOffset: Int) {
+    private fun handleError(highlighter: RangeHighlighter, caretOffset: Int, errorsOn: Boolean) {
+        if (!errorsOn) return
         if (highlighter.textRange.containsOffset(caretOffset)) {
             playSound(Sound.ERROR)
         } else {
