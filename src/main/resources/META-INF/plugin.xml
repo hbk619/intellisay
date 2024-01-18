@@ -36,8 +36,12 @@
         <listener
                 class="com.hbk619.jetbrainsscreenreader.ScreenReaderApp"
                 topic="com.intellij.ide.AppLifecycleListener" />
-    </applicationListeners>
 
+    </applicationListeners>
+    <projectListeners>
+        <listener class="com.hbk619.jetbrainsscreenreader.debugging.BreakpointsListener"
+                  topic="com.intellij.xdebugger.breakpoints.XBreakpointListener"/>
+    </projectListeners>
     <actions>
         <action class="com.hbk619.jetbrainsscreenreader.debugging.DebugListener">
             <keyboard-shortcut
