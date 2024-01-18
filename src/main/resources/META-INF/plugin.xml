@@ -43,7 +43,8 @@
                   topic="com.intellij.xdebugger.breakpoints.XBreakpointListener"/>
     </projectListeners>
     <actions>
-        <action class="com.hbk619.jetbrainsscreenreader.debugging.DebugListener">
+        <action class="com.hbk619.jetbrainsscreenreader.debugging.DebugListener"
+                text="Say Variable">
             <keyboard-shortcut
                     keymap="$default"
                     first-keystroke="ctrl meta alt v"/>
