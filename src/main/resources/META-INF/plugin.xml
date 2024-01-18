@@ -41,8 +41,16 @@
     <projectListeners>
         <listener class="com.hbk619.jetbrainsscreenreader.debugging.BreakpointsListener"
                   topic="com.intellij.xdebugger.breakpoints.XBreakpointListener"/>
+        <listener class="com.hbk619.jetbrainsscreenreader.files.FileEditorListener"
+                  topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
     </projectListeners>
     <actions>
+        <action class="com.hbk619.jetbrainsscreenreader.files.FileNameListener"
+                text="Say File Name">
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="ctrl meta alt l"/>
+        </action>
         <action class="com.hbk619.jetbrainsscreenreader.debugging.DebugListener"
                 text="Say Variable">
             <keyboard-shortcut
