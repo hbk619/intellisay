@@ -1,5 +1,6 @@
 package com.hbk619.jetbrainsscreenreader.files
 
+import com.hbk619.jetbrainsscreenreader.settings.AppSettingsState
 import com.hbk619.jetbrainsscreenreader.sound.Say
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.fileEditor.FileEditorManagerListener
@@ -12,8 +13,10 @@ class FileEditorListener : FileEditorManagerListener {
     private val queue = BackgroundTaskQueue(null, "Saying file name")
 
     override fun fileOpened(@NotNull source: FileEditorManager, @NotNull file: VirtualFile) {
-        val say = Say(source.project, "Saying file name", file.name)
+        if (AppSettingsState.instance.automaticFileNameOn) {
+            val say = Say(source.project, "Saying file name", file.name)
 
-        queue.run(say)
+            queue.run(say)
+        }
     }
 }

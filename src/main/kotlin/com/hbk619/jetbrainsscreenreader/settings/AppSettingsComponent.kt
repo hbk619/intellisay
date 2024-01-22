@@ -13,6 +13,7 @@ class AppSettingsComponent {
     private val warningsOn = JBCheckBox("Beep on warning", true)
     private val errorsOn = JBCheckBox("Beep on error", true)
     private val breakpointsOn = JBCheckBox("Beep on breakpoint", true)
+    private val automaticFileNameOn = JBCheckBox("Automatically announce file names", true)
 
     init {
         panel = FormBuilder.createFormBuilder()
@@ -20,6 +21,7 @@ class AppSettingsComponent {
             .addComponent(warningsOn, 1)
             .addComponent(errorsOn, 1)
             .addComponent(breakpointsOn, 1)
+            .addComponent(automaticFileNameOn, 1)
             .addComponentFillVertically(JPanel(), 0)
             .panel
     }
@@ -47,5 +49,11 @@ class AppSettingsComponent {
         get() = breakpointsOn.isSelected
         set(newVal) {
             breakpointsOn.setSelected(newVal)
+        }
+
+    var isAutomaticFileNameOn: Boolean
+        get() = automaticFileNameOn.isSelected
+        set(newVal) {
+            automaticFileNameOn.setSelected(newVal)
         }
 }

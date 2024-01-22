@@ -12,6 +12,7 @@ internal class AppSettingsState : PersistentStateComponent<AppSettingsState?> {
     var warningsOn: Boolean = true
     var errorsOn: Boolean = true
     var breakpointsOn: Boolean = true
+    var automaticFileNameOn: Boolean = true
 
     override fun getState(): AppSettingsState {
         return this

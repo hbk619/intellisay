@@ -51,6 +51,12 @@
                     keymap="$default"
                     first-keystroke="ctrl meta alt l"/>
         </action>
+        <action class="com.hbk619.jetbrainsscreenreader.files.AutomaticFileNameSetting"
+                text="Automatic File Name Announcement">
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="ctrl meta alt h"/>
+        </action>
         <action class="com.hbk619.jetbrainsscreenreader.debugging.DebugListener"
                 text="Say Variable">
             <keyboard-shortcut
