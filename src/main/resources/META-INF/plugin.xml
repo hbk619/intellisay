@@ -81,5 +81,17 @@
                     keymap="$default"
                     first-keystroke="ctrl meta alt b"/>
         </action>
+        <action class="com.hbk619.jetbrainsscreenreader.issues.WarningsAndErrors"
+                text="Say Number of Errors">
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="ctrl meta alt shift e"/>
+        </action>
+        <action class="com.hbk619.jetbrainsscreenreader.issues.IssueReader"
+                text="Say Issue">
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="ctrl meta alt shift i"/>
+        </action>
     </actions>
 </idea-plugin>
