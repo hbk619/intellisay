@@ -46,7 +46,7 @@ class CaretMoveListener() : CaretListener {
                     else -> continue
                 }
 
-                LOG.info("Error on line " + (logicalLine + 1))
+                LOG.debug("Error on line " + (logicalLine + 1))
                 break
             }
         }
