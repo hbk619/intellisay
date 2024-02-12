@@ -1,5 +1,6 @@
 package com.hbk619.jetbrainsscreenreader.issues
 
+import com.hbk619.jetbrainsscreenreader.caret.Position
 import com.hbk619.jetbrainsscreenreader.sound.Say
 import com.intellij.codeInsight.daemon.impl.HighlightInfo
 import com.intellij.lang.annotation.HighlightSeverity
@@ -29,27 +30,23 @@ class IssueReader() : AnAction() {
             return
         }
 
-
         val caretModel = editor.caretModel
-        val logicalLine = caretModel.logicalPosition.line
-
         val document: Document = editor.document
-        val startOffset: Int = document.getLineStartOffset(logicalLine)
-        val endOffset: Int = document.getLineEndOffset(logicalLine)
+        val position = Position(document, caretModel)
+
         val markupModel = DocumentMarkupModel.forDocument(document, editor.project, true)
         val highlighters = markupModel.allHighlighters
         var foundIssue = false
-        for (highlighter in highlighters) {
-            if (highlighter.startOffset >= startOffset && highlighter.endOffset <= endOffset && highlighter.errorStripeTooltip != null) {
-                val column = caretModel.logicalPosition.column
-                val caretOffset = startOffset + column
-                val tooltip = highlighter.errorStripeTooltip
-                if ( tooltip !is HighlightInfo) continue
 
+        for (highlighter in highlighters) {
+            val tooltip = highlighter.errorStripeTooltip
+            if ( tooltip !is HighlightInfo) continue
+
+            if (position.isCaretWithinHighlight(highlighter)) {
                 val type = tooltip.type.getSeverity(null)
                 foundIssue = when (type) {
-                    HighlightSeverity.WARNING -> handleIssue(project, highlighter, caretOffset, tooltip)
-                    HighlightSeverity.ERROR -> handleIssue(project, highlighter, caretOffset, tooltip)
+                    HighlightSeverity.WARNING -> handleIssue(project, highlighter, position, tooltip)
+                    HighlightSeverity.ERROR -> handleIssue(project, highlighter, position, tooltip)
                     else -> continue
                 }
                 break
@@ -61,12 +58,12 @@ class IssueReader() : AnAction() {
         }
     }
 
-    private fun handleIssue(project: Project, highlighter: RangeHighlighter, caretOffset: Int, tooltip: HighlightInfo): Boolean {
-        if (highlighter.textRange.containsOffset(caretOffset)) {
+    private fun handleIssue(project: Project, highlighter: RangeHighlighter, position: Position, tooltip: HighlightInfo): Boolean {
+        if (position.isCaretOnIssue(highlighter)) {
             queue.run(Say(project, "Reading issue details", tooltip.description))
-        } else if (highlighter.startOffset > caretOffset){
+        } else if (position.isCaretBeforeIssue(highlighter)){
             queue.run(Say(project, "Reading issue details - not there yet", "Not on issue, go right or press f2"))
-        } else if (highlighter.endOffset < caretOffset){
+        } else if (position.isCaretAfterIssue(highlighter)){
             queue.run(Say(project, "Reading issue details - not there yet", "Not on issue, go left"))
         } else {
             queue.run(Say(project, "Reading issue details", "Can't find issue, sorry"))
