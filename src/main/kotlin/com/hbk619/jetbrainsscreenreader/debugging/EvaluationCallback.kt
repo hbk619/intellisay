@@ -17,8 +17,18 @@ class EvaluationCallback(private val queue: AudibleQueue) :
             log.debug("Got variable $childValue")
             childValue.computePresentation(ConfigurableXValueNode(queue, nameOfType), XValuePlace.TREE)
         } else {
-            log.warn("Non java value received: ${childValue.javaClass.name}")
-            queue.say("Non java value received was actually ${childValue.javaClass.name}")
+            try {
+                val f = childValue.javaClass.getDeclaredField("myValue")
+                f.isAccessible = true
+                val desc = f.get(childValue)
+                val t = childValue.javaClass.getDeclaredField("myType")
+                t.isAccessible = true
+                val type = t.get(childValue)
+                queue.say("$desc type is $type")
+                log.warn("Non java value received was actually ${childValue.javaClass.name}")
+            } catch (e: Exception) {
+                errorOccurred("Failed to get type $e")
+            }
         }
     }
 
