@@ -13,7 +13,7 @@ internal class AppSettingsConfigurable : Configurable {
     // is registered in an applicationConfigurable EP
     @Nls(capitalization = Nls.Capitalization.Title)
     override fun getDisplayName(): String {
-        return "Intelli Say settings"
+        return "Intelli Say Settings"
     }
 
     override fun getPreferredFocusedComponent(): JComponent? {
