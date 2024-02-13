@@ -1,5 +1,6 @@
 package com.hbk619.jetbrainsscreenreader
 
+import com.hbk619.jetbrainsscreenreader.caret.CaretMoveListener
 import com.hbk619.jetbrainsscreenreader.sound.Say
 import com.intellij.ide.AppLifecycleListener
 import com.intellij.openapi.Disposable

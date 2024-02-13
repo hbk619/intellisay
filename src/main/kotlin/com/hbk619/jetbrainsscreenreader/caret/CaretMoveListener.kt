@@ -1,6 +1,5 @@
-package com.hbk619.jetbrainsscreenreader
+package com.hbk619.jetbrainsscreenreader.caret
 
-import com.hbk619.jetbrainsscreenreader.caret.Position
 import com.hbk619.jetbrainsscreenreader.settings.AppSettingsState
 import com.hbk619.jetbrainsscreenreader.sound.Player
 import com.hbk619.jetbrainsscreenreader.sound.Sound
