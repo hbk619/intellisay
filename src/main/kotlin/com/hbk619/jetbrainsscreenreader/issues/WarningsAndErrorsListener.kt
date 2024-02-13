@@ -12,8 +12,7 @@ import com.intellij.openapi.editor.markup.RangeHighlighter
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.progress.BackgroundTaskQueue
 
-data class Issue(val type: HighlightSeverity, val message: String, val line: Int) {
-}
+data class Issue(val type: HighlightSeverity, val message: String, val line: Int)
 class WarningsAndErrors: AnAction() {
     private val queue = BackgroundTaskQueue(null, "Saying file errors")
 

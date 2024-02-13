@@ -6,9 +6,9 @@ import com.intellij.openapi.editor.markup.RangeHighlighter
 
 
 class Position(document: Document, caretModel: CaretModel) {
-    var startOffset: Int = 0
-    var endOffset: Int = 0
-    var caretOffset: Int = 0
+    private var startOffset: Int = 0
+    private var endOffset: Int = 0
+    private var caretOffset: Int = 0
 
     init {
         val logicalLine = caretModel.logicalPosition.line

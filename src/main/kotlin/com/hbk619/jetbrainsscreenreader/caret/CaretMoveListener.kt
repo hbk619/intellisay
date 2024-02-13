@@ -15,8 +15,8 @@ import com.intellij.openapi.editor.markup.RangeHighlighter
 import com.intellij.openapi.progress.BackgroundTaskQueue
 import com.intellij.xdebugger.impl.breakpoints.XBreakpointUtil
 
-class CaretMoveListener() : CaretListener {
-    private val LOG: Logger = Logger.getInstance(CaretMoveListener::class.java)
+class CaretMoveListener : CaretListener {
+    private val log: Logger = Logger.getInstance(CaretMoveListener::class.java)
     private var previousLine = 0
     private val queue = BackgroundTaskQueue(null, "Playing sound")
 
@@ -43,7 +43,7 @@ class CaretMoveListener() : CaretListener {
                     else -> continue
                 }
 
-                LOG.debug("Error on line " + (logicalLine + 1))
+                log.debug("Error on line " + (logicalLine + 1))
                 break
             }
         }

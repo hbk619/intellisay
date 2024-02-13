@@ -13,7 +13,7 @@ import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.progress.BackgroundTaskQueue
 import com.intellij.openapi.project.Project
 
-class IssueReader() : AnAction() {
+class IssueReader : AnAction() {
     private val queue = BackgroundTaskQueue(null, "Playing sound")
 
     override fun actionPerformed(event: AnActionEvent) {
