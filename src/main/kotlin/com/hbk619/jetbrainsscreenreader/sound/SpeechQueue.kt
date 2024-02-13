@@ -5,14 +5,14 @@ import com.intellij.openapi.project.Project
 
 class SpeechQueue(private val project: Project?, private val title: String) : AudibleQueue, BackgroundTaskQueue(project, title) {
     override fun say(value: String, optionalTitle: String?) {
-        val s = Say(project, optionalTitle ?: title, value)
+        val speech = say(project, optionalTitle ?: title, value)
 
-        run(s)
+        run(speech)
     }
 
     override fun say(value: String) {
-        val s = Say(project, title, value)
+        val speech = say(project, title, value)
 
-        run(s)
+        run(speech)
     }
 }

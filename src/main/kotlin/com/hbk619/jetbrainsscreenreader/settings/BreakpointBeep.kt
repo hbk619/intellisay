@@ -1,6 +1,6 @@
 package com.hbk619.jetbrainsscreenreader.settings
 
-import com.hbk619.jetbrainsscreenreader.sound.Say
+import com.hbk619.jetbrainsscreenreader.sound.say
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.progress.BackgroundTaskQueue
@@ -10,7 +10,7 @@ class BreakpointBeep : AnAction() {
     override fun actionPerformed(event: AnActionEvent) {
         val settingsState = AppSettingsState.instance
         settingsState.breakpointsOn = !settingsState.breakpointsOn
-        val speech = Say(event.project, "Breakpoint settings", "Breakpoints are ${if (settingsState.breakpointsOn) "on" else "off"}")
+        val speech = say(event.project, "Breakpoint settings", "Breakpoints are ${if (settingsState.breakpointsOn) "on" else "off"}")
         queue.run(speech)
     }
 }

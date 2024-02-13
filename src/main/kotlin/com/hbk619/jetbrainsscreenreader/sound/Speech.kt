@@ -8,7 +8,7 @@ import com.intellij.openapi.progress.Task
 import com.intellij.openapi.project.Project
 import java.nio.charset.Charset
 
-fun Say(project: Project?, title: String, text: String): Speech {
+fun say(project: Project?, title: String, text: String): Speech {
     val commands = listOf("say", text)
     val command = GeneralCommandLine(commands)
     command.charset = Charset.forName("UTF-8")
