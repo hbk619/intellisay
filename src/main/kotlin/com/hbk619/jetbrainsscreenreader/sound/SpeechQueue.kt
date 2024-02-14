@@ -8,10 +8,15 @@ class SpeechQueue(private val project: Project?, private val title: String) : Au
         val speech = say(project, optionalTitle ?: title, value)
 
         run(speech)
+
+    override fun say(value: String, optionalTitle: String?) {
+        val speech = sayText(null, optionalTitle ?: title, value)
+
+        run(speech)
     }
 
     override fun say(value: String) {
-        val speech = say(project, title, value)
+        val speech = sayText(null, title, value)
 
         run(speech)
     }

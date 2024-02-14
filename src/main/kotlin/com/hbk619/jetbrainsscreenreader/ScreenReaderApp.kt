@@ -1,7 +1,7 @@
 package com.hbk619.jetbrainsscreenreader
 
 import com.hbk619.jetbrainsscreenreader.caret.CaretMoveListener
-import com.hbk619.jetbrainsscreenreader.sound.say
+import com.hbk619.jetbrainsscreenreader.sound.sayText
 import com.intellij.ide.AppLifecycleListener
 import com.intellij.openapi.Disposable
 import com.intellij.openapi.diagnostic.Logger
@@ -22,7 +22,7 @@ class ScreenReaderApp : AppLifecycleListener {
         }
         EditorFactory.getInstance().eventMulticaster.addCaretListener(CaretMoveListener(), DisposableThing())
 
-        val speech = say(null, "Intelli say started", "Intelli Say has started")
+        val speech = sayText(null, "Intelli say started", "Intelli Say has started")
         queue.run(speech)
     }
 }

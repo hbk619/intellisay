@@ -1,7 +1,7 @@
 package com.hbk619.jetbrainsscreenreader.issues
 
 import com.hbk619.jetbrainsscreenreader.caret.Position
-import com.hbk619.jetbrainsscreenreader.sound.say
+import com.hbk619.jetbrainsscreenreader.sound.sayText
 import com.intellij.codeInsight.daemon.impl.HighlightInfo
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.openapi.actionSystem.AnAction
@@ -20,13 +20,13 @@ class IssueReader : AnAction() {
         val project = event.project
 
         if (project == null) {
-            queue.run(say(null, "No project open", "No project open"))
+            queue.run(sayText(null, "No project open", "No project open"))
             return
         }
 
         val editor = FileEditorManager.getInstance(project).selectedTextEditor
         if (editor == null) {
-            queue.run(say(null, "No file open", "No file open"))
+            queue.run(sayText(null, "No file open", "No file open"))
             return
         }
 
@@ -54,19 +54,19 @@ class IssueReader : AnAction() {
         }
 
         if (!foundIssue) {
-            queue.run(say(project, "Reading issue details", "No issues on line"))
+            queue.run(sayText(project, "Reading issue details", "No issues on line"))
         }
     }
 
     private fun handleIssue(project: Project, highlighter: RangeHighlighter, position: Position, tooltip: HighlightInfo): Boolean {
         if (position.isCaretOnIssue(highlighter)) {
-            queue.run(say(project, "Reading issue details", tooltip.description))
+            queue.run(sayText(project, "Reading issue details", tooltip.description))
         } else if (position.isCaretBeforeIssue(highlighter)){
-            queue.run(say(project, "Reading issue details - not there yet", "Not on issue, go right or press f2"))
+            queue.run(sayText(project, "Reading issue details - not there yet", "Not on issue, go right or press f2"))
         } else if (position.isCaretAfterIssue(highlighter)){
-            queue.run(say(project, "Reading issue details - not there yet", "Not on issue, go left"))
+            queue.run(sayText(project, "Reading issue details - not there yet", "Not on issue, go left"))
         } else {
-            queue.run(say(project, "Reading issue details", "Can't find issue, sorry"))
+            queue.run(sayText(project, "Reading issue details", "Can't find issue, sorry"))
         }
 
         return true

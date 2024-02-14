@@ -1,6 +1,6 @@
 package com.hbk619.jetbrainsscreenreader.issues
 
-import com.hbk619.jetbrainsscreenreader.sound.say
+import com.hbk619.jetbrainsscreenreader.sound.sayText
 import com.intellij.codeInsight.daemon.impl.HighlightInfo
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.openapi.actionSystem.AnAction
@@ -20,13 +20,13 @@ class WarningsAndErrors: AnAction() {
         val project = event.project
 
         if (project == null) {
-            queue.run(say(null, "No project open", "No project open"))
+            queue.run(sayText(null, "No project open", "No project open"))
             return
         }
 
         val editor = FileEditorManager.getInstance(project).selectedTextEditor
         if (editor == null) {
-            queue.run(say(null, "No file open", "No file open"))
+            queue.run(sayText(null, "No file open", "No file open"))
             return
         }
 
@@ -41,16 +41,16 @@ class WarningsAndErrors: AnAction() {
 
         val numberOfErrors = grouped[HighlightSeverity.ERROR]?.size ?: 0
         if (numberOfErrors > 0) {
-            queue.run(say(project, "Number of errors", "$numberOfErrors errors"))
+            queue.run(sayText(project, "Number of errors", "$numberOfErrors errors"))
         } else {
-            queue.run(say(project, "Number of errors", "No errors"))
+            queue.run(sayText(project, "Number of errors", "No errors"))
         }
 
         val numberOfWarnings = grouped[HighlightSeverity.WARNING]?.size ?: 0
         if (numberOfWarnings > 0) {
-            queue.run(say(project, "Number of warnings", "$numberOfWarnings warnings"))
+            queue.run(sayText(project, "Number of warnings", "$numberOfWarnings warnings"))
         } else {
-            queue.run(say(project, "Number of warnings", "No warnings"))
+            queue.run(sayText(project, "Number of warnings", "No warnings"))
         }
 
     }

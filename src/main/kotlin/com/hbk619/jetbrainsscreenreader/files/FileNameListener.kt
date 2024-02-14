@@ -1,6 +1,6 @@
 package com.hbk619.jetbrainsscreenreader.files
 
-import com.hbk619.jetbrainsscreenreader.sound.say
+import com.hbk619.jetbrainsscreenreader.sound.sayText
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
@@ -19,7 +19,7 @@ class FileNameListener : AnAction() {
     }
 
     private fun say(value: String, project: Project?) {
-        val speech = say(project, "Saying file name", value)
+        val speech = sayText(project, "Saying file name", value)
 
         queue.run(speech)
     }
