@@ -10,7 +10,7 @@ import com.intellij.xdebugger.impl.breakpoints.XExpressionImpl
 
 
 class DebugListener : AnAction() {
-    private val queue = SpeechQueue(null, "Evaluating variable")
+    private val queue = SpeechQueue()
     override fun actionPerformed(event: AnActionEvent) {
         val project = event.project ?: return queue.say("No project open")
 

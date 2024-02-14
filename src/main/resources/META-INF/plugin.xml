@@ -30,7 +30,9 @@
                                  id="com.hbk619.jetbrainsscreenreader.settings.AppSettingsConfigurable"
                                  displayName="Intelli Say"/>
         <applicationService serviceImplementation="com.hbk619.jetbrainsscreenreader.settings.AppSettingsState"/>
-
+        <applicationService serviceImplementation="com.hbk619.jetbrainsscreenreader.sound.SpeechQueue"
+                        serviceInterface="com.hbk619.jetbrainsscreenreader.sound.AudibleQueue"
+                        testServiceImplementation="com.hbk619.jetbrainsscreenreader.sound.MockAudibleQueue"/>
     </extensions>
     <applicationListeners>
         <listener
