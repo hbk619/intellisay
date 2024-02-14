@@ -10,23 +10,20 @@ import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.editor.impl.DocumentMarkupModel
 import com.intellij.openapi.editor.markup.RangeHighlighter
 import com.intellij.openapi.fileEditor.FileEditorManager
-import com.intellij.openapi.progress.BackgroundTaskQueue
 
 data class Issue(val type: HighlightSeverity, val message: String, val line: Int)
 class WarningsAndErrors: AnAction() {
-    private val queue = BackgroundTaskQueue(null, "Saying file errors")
-
     override fun actionPerformed(event: AnActionEvent) {
         val project = event.project
 
         if (project == null) {
-            queue.run(sayText(null, "No project open", "No project open"))
+            sayText(null, "No project open", "No project open")
             return
         }
 
         val editor = FileEditorManager.getInstance(project).selectedTextEditor
         if (editor == null) {
-            queue.run(sayText(null, "No file open", "No file open"))
+            sayText(null, "No file open", "No file open")
             return
         }
 
@@ -41,16 +38,16 @@ class WarningsAndErrors: AnAction() {
 
         val numberOfErrors = grouped[HighlightSeverity.ERROR]?.size ?: 0
         if (numberOfErrors > 0) {
-            queue.run(sayText(project, "Number of errors", "$numberOfErrors errors"))
+            sayText(project, "Number of errors", "$numberOfErrors errors")
         } else {
-            queue.run(sayText(project, "Number of errors", "No errors"))
+            sayText(project, "Number of errors", "No errors")
         }
 
         val numberOfWarnings = grouped[HighlightSeverity.WARNING]?.size ?: 0
         if (numberOfWarnings > 0) {
-            queue.run(sayText(project, "Number of warnings", "$numberOfWarnings warnings"))
+            sayText(project, "Number of warnings", "$numberOfWarnings warnings")
         } else {
-            queue.run(sayText(project, "Number of warnings", "No warnings"))
+            sayText(project, "Number of warnings", "No warnings")
         }
 
     }

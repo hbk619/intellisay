@@ -10,23 +10,21 @@ import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.impl.DocumentMarkupModel
 import com.intellij.openapi.editor.markup.RangeHighlighter
 import com.intellij.openapi.fileEditor.FileEditorManager
-import com.intellij.openapi.progress.BackgroundTaskQueue
 import com.intellij.openapi.project.Project
 
 class IssueReader : AnAction() {
-    private val queue = BackgroundTaskQueue(null, "Playing sound")
-
+    
     override fun actionPerformed(event: AnActionEvent) {
         val project = event.project
 
         if (project == null) {
-            queue.run(sayText(null, "No project open", "No project open"))
+            sayText(null, "No project open", "No project open")
             return
         }
 
         val editor = FileEditorManager.getInstance(project).selectedTextEditor
         if (editor == null) {
-            queue.run(sayText(null, "No file open", "No file open"))
+            sayText(null, "No file open", "No file open")
             return
         }
 
@@ -54,19 +52,19 @@ class IssueReader : AnAction() {
         }
 
         if (!foundIssue) {
-            queue.run(sayText(project, "Reading issue details", "No issues on line"))
+            sayText(project, "Reading issue details", "No issues on line")
         }
     }
 
     private fun handleIssue(project: Project, highlighter: RangeHighlighter, position: Position, tooltip: HighlightInfo): Boolean {
         if (position.isCaretOnIssue(highlighter)) {
-            queue.run(sayText(project, "Reading issue details", tooltip.description))
+            sayText(project, "Reading issue details", tooltip.description)
         } else if (position.isCaretBeforeIssue(highlighter)){
-            queue.run(sayText(project, "Reading issue details - not there yet", "Not on issue, go right or press f2"))
+            sayText(project, "Reading issue details - not there yet", "Not on issue, go right or press f2")
         } else if (position.isCaretAfterIssue(highlighter)){
-            queue.run(sayText(project, "Reading issue details - not there yet", "Not on issue, go left"))
+            sayText(project, "Reading issue details - not there yet", "Not on issue, go left")
         } else {
-            queue.run(sayText(project, "Reading issue details", "Can't find issue, sorry"))
+            sayText(project, "Reading issue details", "Can't find issue, sorry")
         }
 
         return true

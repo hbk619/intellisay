@@ -2,20 +2,17 @@ package com.hbk619.jetbrainsscreenreader.sound
 
 import com.intellij.execution.configurations.GeneralCommandLine
 import com.intellij.execution.process.ScriptRunnerUtil
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.Task
 import com.intellij.openapi.project.Project
-import java.nio.charset.Charset
 
-fun sayText(project: Project?, title: String, text: String): Speech {
-    val commands = listOf("say", text)
-    val command = GeneralCommandLine(commands)
-    command.charset = Charset.forName("UTF-8")
-    command.setWorkDirectory(project?.basePath ?: ".")
-
-    return Speech(project, title, command)
+fun sayText(project: Project?, title: String, text: String) {
+    val aQueue: AudibleQueue = ApplicationManager.getApplication().getService(AudibleQueue::class.java)
+    if (project != null) aQueue.say(project, text, title) else aQueue.say(text, title)
 }
+
 class Speech(project: Project?, title: String, private val command: GeneralCommandLine) : Task.Backgroundable(project, title) {
     private val log = Logger.getInstance(Speech::class.java)
 

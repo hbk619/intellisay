@@ -4,12 +4,10 @@ import com.hbk619.jetbrainsscreenreader.sound.sayText
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
-import com.intellij.openapi.progress.BackgroundTaskQueue
 import com.intellij.openapi.project.Project
 
 
 class FileNameListener : AnAction() {
-    private val queue = BackgroundTaskQueue(null, "Saying file name")
     override fun actionPerformed(event: AnActionEvent) {
         val project = event.project ?: return say("No project open", null)
 
@@ -19,8 +17,6 @@ class FileNameListener : AnAction() {
     }
 
     private fun say(value: String, project: Project?) {
-        val speech = sayText(project, "Saying file name", value)
-
-        queue.run(speech)
+        sayText(project, "Saying file name", value)
     }
 }
