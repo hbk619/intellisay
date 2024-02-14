@@ -33,6 +33,9 @@
         <applicationService serviceImplementation="com.hbk619.jetbrainsscreenreader.sound.SpeechQueue"
                         serviceInterface="com.hbk619.jetbrainsscreenreader.sound.AudibleQueue"
                         testServiceImplementation="com.hbk619.jetbrainsscreenreader.sound.MockAudibleQueue"/>
+        <applicationService serviceImplementation="com.hbk619.jetbrainsscreenreader.sound.SoundQueue"
+                            serviceInterface="com.hbk619.jetbrainsscreenreader.sound.PlayerQueue"
+                            testServiceImplementation="com.hbk619.jetbrainsscreenreader.sound.MockPlayerQueue"/>
     </extensions>
     <applicationListeners>
         <listener

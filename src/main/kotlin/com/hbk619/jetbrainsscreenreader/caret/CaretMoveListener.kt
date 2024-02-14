@@ -1,8 +1,9 @@
 package com.hbk619.jetbrainsscreenreader.caret
 
 import com.hbk619.jetbrainsscreenreader.settings.AppSettingsState
-import com.hbk619.jetbrainsscreenreader.sound.Player
 import com.hbk619.jetbrainsscreenreader.sound.Sound
+import com.hbk619.jetbrainsscreenreader.sound.playSound
+import com.hbk619.jetbrainsscreenreader.sound.title
 import com.intellij.codeInsight.daemon.impl.HighlightInfo
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.openapi.diagnostic.Logger
@@ -12,13 +13,12 @@ import com.intellij.openapi.editor.event.CaretEvent
 import com.intellij.openapi.editor.event.CaretListener
 import com.intellij.openapi.editor.impl.DocumentMarkupModel
 import com.intellij.openapi.editor.markup.RangeHighlighter
-import com.intellij.openapi.progress.BackgroundTaskQueue
 import com.intellij.xdebugger.impl.breakpoints.XBreakpointUtil
 
+const val carentMoveTitle = "Caret move sound"
 class CaretMoveListener : CaretListener {
     private val log: Logger = Logger.getInstance(CaretMoveListener::class.java)
     private var previousLine = 0
-    private val queue = BackgroundTaskQueue(null, "Playing sound")
 
     override fun caretPositionChanged(e: CaretEvent) {
         val caretModel = e.editor.caretModel
@@ -58,7 +58,7 @@ class CaretMoveListener : CaretListener {
             val breakpoints =
                 XBreakpointUtil.findSelectedBreakpoint(project, editor)
             if (breakpoints.second != null) {
-                playSound(Sound.BREAKPOINT)
+                play(Sound.BREAKPOINT)
             }
         }
     }
@@ -66,19 +66,19 @@ class CaretMoveListener : CaretListener {
     private fun handleError(highlighter: RangeHighlighter, position: Position, errorsOn: Boolean) {
         if (!errorsOn) return
         if (position.isCaretOnIssue(highlighter)) {
-            playSound(Sound.ERROR)
+            play(Sound.ERROR)
         } else {
-            playSound(Sound.WARNING)
+            play(Sound.WARNING)
         }
     }
 
     private fun handleWarning(previousLine: Int, logicalLine: Int, warningsEnabled: Boolean) {
         if (previousLine != logicalLine && warningsEnabled) {
-            playSound(Sound.WARNING)
+            play(Sound.WARNING)
         }
     }
 
-    private fun playSound(sound: Sound) {
-        queue.run(Player(null, "Playing sound", sound))
+    private fun play(sound: Sound) {
+        playSound(null, title, sound)
     }
 }
