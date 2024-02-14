@@ -25,12 +25,12 @@ class SpeechQueue : AudibleQueue, BackgroundTaskQueue(null, title) {
         run(speech)
     }
 
-    private fun createSpeech(project: Project?, title: String, text: String): Speech {
+    private fun createSpeech(project: Project?, title: String, text: String): SpeechTask {
         val commands = listOf("say", text)
         val command = GeneralCommandLine(commands)
         command.charset = Charset.forName("UTF-8")
         command.setWorkDirectory(project?.basePath ?: ".")
 
-        return Speech(project, title, command)
+        return SpeechTask(project, title, command)
     }
 }

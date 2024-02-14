@@ -13,8 +13,8 @@ fun sayText(project: Project?, title: String, text: String) {
     if (project != null) aQueue.say(project, text, title) else aQueue.say(text, title)
 }
 
-class Speech(project: Project?, title: String, private val command: GeneralCommandLine) : Task.Backgroundable(project, title) {
-    private val log = Logger.getInstance(Speech::class.java)
+class SpeechTask(project: Project?, title: String, private val command: GeneralCommandLine) : Task.Backgroundable(project, title) {
+    private val log = Logger.getInstance(SpeechTask::class.java)
 
     override fun run(progressIndicator: ProgressIndicator) {
         val output = ScriptRunnerUtil.getProcessOutput(command)
