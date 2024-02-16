@@ -3,7 +3,6 @@ package com.hbk619.jetbrainsscreenreader.caret
 import com.hbk619.jetbrainsscreenreader.settings.AppSettingsState
 import com.hbk619.jetbrainsscreenreader.sound.Sound
 import com.hbk619.jetbrainsscreenreader.sound.playSound
-import com.hbk619.jetbrainsscreenreader.sound.title
 import com.intellij.codeInsight.daemon.impl.HighlightInfo
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.openapi.diagnostic.Logger
@@ -79,6 +78,6 @@ class CaretMoveListener : CaretListener {
     }
 
     private fun play(sound: Sound) {
-        playSound(null, title, sound)
+        playSound(null, carentMoveTitle, sound)
     }
 }

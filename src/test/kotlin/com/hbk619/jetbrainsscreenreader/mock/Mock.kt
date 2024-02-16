@@ -7,6 +7,9 @@ abstract class Mock {
         callList.add(call)
     }
 
+    fun reset() {
+        callList.clear()
+    }
     val calls: ArrayList<Call>
         get() = callList
 }

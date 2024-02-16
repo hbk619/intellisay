@@ -7,6 +7,7 @@ class AutomaticFileNameTest: BaseTestCase() {
     override fun getTestDataPath(): String {
         return "src/test/testdata/java-play"
     }
+
     fun testTriggeringActionTogglesSetting() {
         myFixture.configureByFile("src/Main.java")
 
