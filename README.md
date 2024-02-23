@@ -49,7 +49,21 @@ Open the file ./build/distributions/intellisay-1.0-SNAPSHOT.zip then restart Int
 - control command option w - Toggle Warning Beep
 - control command option e - Toggle Error Beep
 - control command option b - Toggle Breakpoint Beep
- 
+
+## Customising sounds
+
+### Possible sounds
+You can customise the sounds by opening the preferences panel with command comma and navigating to 
+Tools -> Intelli Say. To the right there is a form with an input field for Sounds location
+enter a path on your file system to a folder that contains you sound files
+
+Below is the list of file names to use to replace sounds
+
+- error.wav
+- warning.wav
+- breakpoint-added.wav
+- breakpoint-removed.wav
+- breakpoint.wav"
 
 ## Tests
 
