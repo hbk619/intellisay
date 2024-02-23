@@ -5,4 +5,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "jetbrains-screenreader"
+rootProject.name = "intellisay"
