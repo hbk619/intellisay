@@ -63,7 +63,7 @@ Below is the list of file names to use to replace sounds
 - warning.wav
 - breakpoint-added.wav
 - breakpoint-removed.wav
-- breakpoint.wav"
+- breakpoint.wav
 
 ## Tests
 
