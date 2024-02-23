@@ -8,12 +8,12 @@ import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.editor.EditorFactory
 
 
-class ScreenReaderApp : AppLifecycleListener {
-    private val log: Logger = Logger.getInstance(ScreenReaderApp::class.java)
+class MainApp : AppLifecycleListener {
+    private val log: Logger = Logger.getInstance(MainApp::class.java)
     override fun appStarted() {
         class DisposableThing : Disposable {
             override fun dispose() {
-                log.info("Disposed of " + ScreenReaderApp::class.java.name)
+                log.info("Disposed of " + MainApp::class.java.name)
             }
 
         }

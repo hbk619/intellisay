@@ -50,7 +50,7 @@
     </extensions>
     <applicationListeners>
         <listener
-                class="com.hbk619.intellisay.ScreenReaderApp"
+                class="com.hbk619.intellisay.MainApp"
                 topic="com.intellij.ide.AppLifecycleListener" />
 
     </applicationListeners>
