@@ -14,10 +14,37 @@ Makes intellij more useful for screen reader users by various features
 <br/>
 Sounds can be customised via a setting and each sound can be enabled or disabled via a setting, keyboard shortcut or quick action
 
-Unfortunately this only works on Mac with IntelliJ at the moment as it uses the 'say' command.
-Other OS's will be added in the future (hopefully!)
+This has only been tested on MacOS so far.
 
-## Usage
+## Prerequisites
+
+For spoken words you will need a say command that accepts a string of text
+
+### MacOS
+
+This is built in and nothing is required
+
+### Linux (untested)
+
+You will need to map the say command to something. The standard way for Ubuntu is to use the speech dispatcher.
+Install with the below
+
+```commandline
+sudo apt-get install speech-dispatch
+```
+
+Then locate the spd-say command with the below
+
+```commandline
+which spd-say
+```
+
+Then create a symlink from your /usr/local/bin folder to the spd-say with the below
+
+```commandline
+sudo ln -s your-spd-say-location /usr/local/bin/say
+```
+
 
 ### Building
 Install a JDK ([OracleJDK](https://www.oracle.com/java/technologies/downloads/#jdk21-mac) can be downloaded or brew can [install OpenJDK](https://stackoverflow.com/a/65601197))
