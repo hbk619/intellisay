@@ -24,7 +24,7 @@ For spoken words you will need a say command that accepts a string of text
 
 This is built in and nothing is required
 
-### Linux (untested)
+### Linux
 
 You will need to map the say command to something. The standard way for Ubuntu is to use the speech dispatcher.
 Install with the below
