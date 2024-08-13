@@ -2,7 +2,6 @@ package com.hbk619.intellisay.settings
 
 import com.intellij.openapi.options.Configurable
 import org.jetbrains.annotations.Nls
-import org.jetbrains.annotations.Nullable
 import javax.swing.JComponent
 
 
@@ -20,7 +19,7 @@ internal class AppSettingsConfigurable : Configurable {
         return mySettingsComponent?.preferredFocusedComponent
     }
 
-    override fun createComponent(): @Nullable JComponent? {
+    override fun createComponent(): JComponent? {
         mySettingsComponent = AppSettingsComponent()
         return mySettingsComponent?.panel
     }
