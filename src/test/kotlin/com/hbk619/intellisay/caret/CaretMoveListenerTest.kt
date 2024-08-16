@@ -93,14 +93,14 @@ class CaretMoveListenerTest : BaseTestCase() {
 
     fun testToggleBreakpointPlaysSoundIfSettingIsEnabled() {
         AppSettingsState.instance.breakpointsOn = true
-        myFixture.configureByFile("src/App.java")
+        myFixture.configureByFile("src/Main.java")
 
         myFixture.performEditorAction("ToggleLineBreakpoint")
         val queue = getPlayerQueue()
         queue.reset()
-        myFixture.performEditorAction(IdeActions.ACTION_EDITOR_MOVE_CARET_UP)
         myFixture.performEditorAction(IdeActions.ACTION_EDITOR_MOVE_CARET_DOWN)
-
+        UsefulTestCase.assertSize(0, queue.calls)
+        myFixture.performEditorAction(IdeActions.ACTION_EDITOR_MOVE_CARET_UP)
         UsefulTestCase.assertSize(1, queue.calls)
         val call = queue.calls[0]
         UsefulTestCase.assertEquals(listOf(null, "Caret move sound", Sound.BREAKPOINT), call.args)
