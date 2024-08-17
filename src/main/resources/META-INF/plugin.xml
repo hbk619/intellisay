@@ -59,6 +59,8 @@
                   topic="com.intellij.xdebugger.breakpoints.XBreakpointListener"/>
         <listener class="com.hbk619.intellisay.files.FileEditorListener"
                   topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
+        <listener class="com.hbk619.intellisay.project.RunListener"
+                  topic="com.intellij.execution.ExecutionListener"/>
     </projectListeners>
     <actions>
         <action class="com.hbk619.intellisay.files.FileNameListener"
