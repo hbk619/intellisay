@@ -1,8 +1,9 @@
 package com.hbk619.intellisay.sound
 
+import com.hbk619.intellisay.script.Runner
 import com.hbk619.intellisay.settings.AppSettingsState
 import com.intellij.execution.configurations.GeneralCommandLine
-import com.intellij.execution.process.ScriptRunnerUtil
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.diagnostic.Logger
 import java.nio.charset.Charset
 
@@ -14,7 +15,8 @@ fun validateVoiceOver() {
     command.charset = Charset.forName("UTF-8")
     command.setWorkDirectory(".")
 
-    val output = ScriptRunnerUtil.getProcessOutput(command)
+    val runner = ApplicationManager.getApplication().getService(Runner::class.java)
+    val output = runner.run(command)
     AppSettingsState.instance.useVoiceOver = output.trim() == "1"
     log.debug("Applescript setting $output")
 }
