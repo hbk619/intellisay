@@ -18,15 +18,16 @@ This has only been tested on MacOS so far.
 
 ## Prerequisites
 
-For spoken words you will need a say command that accepts a string of text
-
 ### MacOS
 
-This is built in and nothing is required
+If VoiceOver can be controlled by AppleScript then IntelliSay will use Voiceover, if not it will use the built-in say command.
+
+To enable AppleScript with VoiceOver open the VoiceOver utility app and on the General tab select "Allow VoiceOver to be controlled with AppleScript"
 
 ### Linux
 
-You will need to map the say command to something. The standard way for Ubuntu is to use the speech dispatcher.
+For spoken words you will need a say command that accepts a string of text.
+The standard way for Ubuntu is to use the speech dispatcher.
 Install with the below
 
 ```commandline

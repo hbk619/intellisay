@@ -1,5 +1,6 @@
 package com.hbk619.intellisay.sound
 
+import com.hbk619.intellisay.settings.AppSettingsState
 import com.intellij.execution.configurations.GeneralCommandLine
 import com.intellij.openapi.progress.BackgroundTaskQueue
 import com.intellij.openapi.project.Project
@@ -26,11 +27,22 @@ class SpeechQueue : AudibleQueue, BackgroundTaskQueue(null, title) {
     }
 
     private fun createSpeech(project: Project?, title: String, text: String): SpeechTask {
-        val commands = listOf("say", text)
+        val commands = getSpeechCommand(text)
         val command = GeneralCommandLine(commands)
         command.charset = Charset.forName("UTF-8")
         command.setWorkDirectory(project?.basePath ?: ".")
 
         return SpeechTask(project, title, command)
+    }
+
+    private fun getSpeechCommand(text: String): List<String> {
+        if (AppSettingsState.instance.useVoiceOver) {
+            val applescript = "tell application \"VoiceOver\"\n" +
+                    "\toutput \"$text\"\n" +
+                    "end tell"
+            return listOf("/usr/bin/osascript", "-e", applescript)
+        } else {
+            return listOf("say", text)
+        }
     }
 }
