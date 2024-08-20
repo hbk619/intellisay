@@ -33,6 +33,7 @@ intellijPlatform {
     pluginConfiguration {
         ideaVersion {
             sinceBuild = "231"
+            untilBuild = provider { null }
         }
     }
 
