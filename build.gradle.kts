@@ -1,3 +1,7 @@
+import org.jetbrains.intellij.platform.gradle.TestFrameworkType
+import org.jetbrains.intellij.platform.gradle.models.Coordinates
+
+
 plugins {
     id("org.jetbrains.intellij.platform") version "2.0.1"
 
@@ -21,7 +25,9 @@ dependencies {
         bundledPlugins(providers.gradleProperty("platformPlugins").map { it.split(',') })
 
         instrumentationTools()
+        testFramework(TestFrameworkType.Platform)
     }
+    testImplementation("junit:junit:4.13.2")
 }
 intellijPlatform {
     pluginConfiguration {
