@@ -1,7 +1,7 @@
 package com.hbk619.intellisay.sound
 
+import com.hbk619.intellisay.script.Runner
 import com.intellij.execution.configurations.GeneralCommandLine
-import com.intellij.execution.process.ScriptRunnerUtil
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.progress.ProgressIndicator
@@ -15,9 +15,10 @@ fun sayText(project: Project?, title: String, text: String) {
 
 class SpeechTask(project: Project?, title: String, private val command: GeneralCommandLine) : Task.Backgroundable(project, title) {
     private val log = Logger.getInstance(SpeechTask::class.java)
+    private val runner = ApplicationManager.getApplication().getService(Runner::class.java)
 
     override fun run(progressIndicator: ProgressIndicator) {
-        val output = ScriptRunnerUtil.getProcessOutput(command)
+        val output = runner.run(command)
         if (output.isEmpty()) {
             log.debug("Said $command")
         } else {
