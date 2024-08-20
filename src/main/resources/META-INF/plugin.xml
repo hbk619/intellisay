@@ -47,6 +47,9 @@
         <applicationService serviceImplementation="com.hbk619.intellisay.sound.SoundQueue"
                             serviceInterface="com.hbk619.intellisay.sound.PlayerQueue"
                             testServiceImplementation="com.hbk619.intellisay.sound.MockPlayerQueue"/>
+        <applicationService serviceImplementation="com.hbk619.intellisay.script.ScriptRunner"
+                            serviceInterface="com.hbk619.intellisay.script.Runner"
+                            testServiceImplementation="com.hbk619.intellisay.script.MockScriptRunner"/>
     </extensions>
     <applicationListeners>
         <listener
