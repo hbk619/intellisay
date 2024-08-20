@@ -1,5 +1,4 @@
 import org.jetbrains.intellij.platform.gradle.TestFrameworkType
-import org.jetbrains.intellij.platform.gradle.models.Coordinates
 
 
 plugins {
@@ -28,6 +27,7 @@ dependencies {
         testFramework(TestFrameworkType.Platform)
     }
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.opentest4j:opentest4j:1.1.1")
 }
 intellijPlatform {
     pluginConfiguration {
