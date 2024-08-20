@@ -9,6 +9,11 @@ class BreakpointListenerTest: BaseTestCase() {
         return "src/test/testdata/java-play"
     }
 
+    override fun tearDown() {
+        myFixture.performEditorAction("Debugger.RemoveAllBreakpoints")
+        super.tearDown()
+    }
+
     fun testToggleBreakpointPlaysSound() {
         myFixture.configureByFile("src/Main.java")
 

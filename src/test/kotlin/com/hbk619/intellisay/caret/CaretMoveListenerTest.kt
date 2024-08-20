@@ -24,6 +24,7 @@ class CaretMoveListenerTest : BaseTestCase() {
         AppSettingsState.instance.errorsOn = true
         AppSettingsState.instance.warningsOn = true
         EditorFactory.getInstance().eventMulticaster.removeCaretListener(caretMoveListener)
+        myFixture.performEditorAction("Debugger.RemoveAllBreakpoints")
         super.tearDown()
     }
 
@@ -80,7 +81,7 @@ class CaretMoveListenerTest : BaseTestCase() {
 
     fun testToggleBreakpointDoesNotPlaySoundIfSettingIsDisabled() {
         AppSettingsState.instance.breakpointsOn = false
-        myFixture.configureByFile("src/App.java")
+        myFixture.configureByFile("src/Main.java")
 
         myFixture.performEditorAction("ToggleLineBreakpoint")
         val queue = getPlayerQueue()
