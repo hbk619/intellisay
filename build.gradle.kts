@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
     intellijPlatform {
-        create("IC", "2023.1.5")
+        create("IC", "2024.1.1")
         bundledPlugins(providers.gradleProperty("platformPlugins").map { it.split(',') })
 
         instrumentationTools()
@@ -29,6 +29,8 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.opentest4j:opentest4j:1.1.1")
 }
+
+
 intellijPlatform {
     pluginConfiguration {
         ideaVersion {
