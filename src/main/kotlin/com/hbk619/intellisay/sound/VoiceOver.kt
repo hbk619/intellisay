@@ -17,7 +17,10 @@ fun validateVoiceOver() {
 
     val runner = ApplicationManager.getApplication().getService(Runner::class.java)
     val output = runner.run(command)
-    AppSettingsState.instance.useVoiceOver = output.trim() == "1"
+    if (AppSettingsState.instance.useVoiceOver and (output.trim() != "1")) {
+        AppSettingsState.instance.useVoiceOver = false
+        sayText(null, "Voiceover not configured", "Use VoiceOver is set to true but Allow VoiceOver to be controlled by Javascript is not set. Please use VoiceOver Utility to allow  VoiceOver to be controlled by Javascript")
+    }
     log.debug("Applescript setting $output")
 }
 

@@ -4,6 +4,7 @@ import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
+import com.intellij.openapi.util.SystemInfo
 import com.intellij.util.xmlb.XmlSerializerUtil
 
 @State(name = "com.hbk619.jetbrainsscreenreader.settings.AppSettingsState", storages = [Storage("intellisay.xml")])
@@ -13,7 +14,7 @@ internal class AppSettingsState : PersistentStateComponent<AppSettingsState?> {
     var errorsOn: Boolean = true
     var breakpointsOn: Boolean = true
     var automaticFileNameOn: Boolean = false
-    var useVoiceOver: Boolean = false
+    var useVoiceOver: Boolean = SystemInfo.isMac
     var dumbModeAnnouncementOn: Boolean = true
 
     override fun getState(): AppSettingsState {
