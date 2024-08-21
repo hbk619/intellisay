@@ -63,6 +63,8 @@
                   topic="com.intellij.xdebugger.breakpoints.XBreakpointListener"/>
         <listener class="com.hbk619.intellisay.files.FileEditorListener"
                   topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
+        <listener class="com.hbk619.intellisay.project.DumbModeListener"
+                  topic="com.intellij.openapi.project.DumbService$DumbModeListener"/>
         <listener class="com.hbk619.intellisay.project.CompilationListener"
                   topic="com.intellij.openapi.compiler.CompilationStatusListener"/>
     </projectListeners>
@@ -102,6 +104,12 @@
             <keyboard-shortcut
                     keymap="$default"
                     first-keystroke="ctrl meta alt b"/>
+        </action>
+        <action class="com.hbk619.intellisay.settings.DumbModeAnnouncement"
+                text="Dumb Mode Announcement">
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="ctrl meta alt shift d"/>
         </action>
         <action class="com.hbk619.intellisay.issues.WarningsAndErrors"
                 text="Say Number of Errors">

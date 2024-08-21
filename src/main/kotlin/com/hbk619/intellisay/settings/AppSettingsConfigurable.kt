@@ -31,6 +31,7 @@ internal class AppSettingsConfigurable : Configurable {
         modified = modified or mySettingsComponent!!.isErrorBeepOn != settings.errorsOn
         modified = modified or mySettingsComponent!!.isBreakpointBeepOn != settings.breakpointsOn
         modified = modified or mySettingsComponent!!.isAutomaticFileNameOn != settings.automaticFileNameOn
+        modified = modified or mySettingsComponent!!.isDumbModeAnnouncementOn != settings.dumbModeAnnouncementOn
         return modified
     }
 
@@ -41,6 +42,7 @@ internal class AppSettingsConfigurable : Configurable {
         settings.errorsOn = mySettingsComponent?.isErrorBeepOn!!
         settings.breakpointsOn = mySettingsComponent?.isBreakpointBeepOn!!
         settings.automaticFileNameOn = mySettingsComponent?.isAutomaticFileNameOn!!
+        settings.dumbModeAnnouncementOn = mySettingsComponent?.isDumbModeAnnouncementOn!!
     }
 
     override fun reset() {
@@ -50,6 +52,7 @@ internal class AppSettingsConfigurable : Configurable {
         mySettingsComponent?.isErrorBeepOn = settings.errorsOn
         mySettingsComponent?.isBreakpointBeepOn = settings.breakpointsOn
         mySettingsComponent?.isAutomaticFileNameOn = settings.automaticFileNameOn
+        mySettingsComponent?.isDumbModeAnnouncementOn = settings.dumbModeAnnouncementOn
     }
 
     override fun disposeUIResources() {

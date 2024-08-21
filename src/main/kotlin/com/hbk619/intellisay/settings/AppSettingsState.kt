@@ -14,6 +14,7 @@ internal class AppSettingsState : PersistentStateComponent<AppSettingsState?> {
     var breakpointsOn: Boolean = true
     var automaticFileNameOn: Boolean = false
     var useVoiceOver: Boolean = false
+    var dumbModeAnnouncementOn: Boolean = true
 
     override fun getState(): AppSettingsState {
         return this

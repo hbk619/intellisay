@@ -1,3 +1,4 @@
+import org.jetbrains.intellij.platform.gradle.IntelliJPlatformType
 import org.jetbrains.intellij.platform.gradle.TestFrameworkType
 
 
@@ -34,7 +35,7 @@ dependencies {
 intellijPlatform {
     pluginConfiguration {
         ideaVersion {
-            sinceBuild = "231"
+            sinceBuild = "241"
             untilBuild = provider { null }
         }
     }
@@ -52,6 +53,17 @@ intellijPlatform {
 
 kotlin {
     jvmToolchain(17)
+}
+
+
+val runIdeWithPlugins by intellijPlatformTesting.runIde.registering {
+    intellijPlatformTesting {
+        type = IntelliJPlatformType.IntellijIdeaUltimate
+        version = "2024.1.2"
+    }
+    plugins {
+        plugin("PythonId", "241.17011.79")
+    }
 }
 
 tasks {

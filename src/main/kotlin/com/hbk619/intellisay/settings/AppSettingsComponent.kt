@@ -14,6 +14,7 @@ class AppSettingsComponent {
     private val errorsOn = JBCheckBox("Beep on error", true)
     private val breakpointsOn = JBCheckBox("Beep on breakpoint", true)
     private val automaticFileNameOn = JBCheckBox("Automatically announce file names", true)
+    private val dumbModeAnnouncementOn = JBCheckBox("Automatically announce dumb mode which is when limited features are available", true)
 
     init {
         panel = FormBuilder.createFormBuilder()
@@ -22,6 +23,7 @@ class AppSettingsComponent {
             .addComponent(errorsOn, 1)
             .addComponent(breakpointsOn, 1)
             .addComponent(automaticFileNameOn, 1)
+            .addComponent(dumbModeAnnouncementOn, 1)
             .addComponentFillVertically(JPanel(), 0)
             .panel
     }
@@ -55,5 +57,11 @@ class AppSettingsComponent {
         get() = automaticFileNameOn.isSelected
         set(newVal) {
             automaticFileNameOn.setSelected(newVal)
+        }
+
+    var isDumbModeAnnouncementOn: Boolean
+        get() = dumbModeAnnouncementOn.isSelected
+        set(newVal) {
+            dumbModeAnnouncementOn.setSelected(newVal)
         }
 }
