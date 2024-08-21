@@ -10,6 +10,9 @@ Makes intellij more useful for screen reader users by various features
 <li>Ability to say a variable value while debugging via keyboard shortcut or quick action</li>
 <li>Ability to say the file name via keyboard shortcut or quick action</li>
 <li>Automatically announce file name when opened from the project explorer</li>
+<li>Announce when IDE enters or exists dumb mode (when functionality is limited)</li>
+<li>Read compile errors for compiled languages</li>
+<li></li>
 </ul>
 <br/>
 Sounds can be customised via a setting and each sound can be enabled or disabled via a setting, keyboard shortcut or quick action
@@ -23,6 +26,7 @@ This has only been tested on MacOS so far.
 If VoiceOver can be controlled by AppleScript then IntelliSay will use Voiceover, if not it will use the built-in say command.
 
 To enable AppleScript with VoiceOver open the VoiceOver utility app and on the General tab select "Allow VoiceOver to be controlled with AppleScript"
+To use the built-in say command even when VoiceOver is setup use the quick actions (press shift twice) to find the setting "Use VoiceOver" 
 
 ### Linux
 
@@ -73,10 +77,13 @@ Open the file ./build/distributions/intellisay-1.0-SNAPSHOT.zip then restart Int
 - control command option v - Say Variable
 - control command option shift e - Say Number of Errors
 - control command option shift i - Say Issue
+- control command option c - Say compile errors
 - control command option h - Toggle Automatic File Name Announcement
 - control command option w - Toggle Warning Beep
 - control command option e - Toggle Error Beep
 - control command option b - Toggle Breakpoint Beep
+- control command option v - Toggle VoiceOver
+- control command option d - Toggle Dumb Mode Announcements
 
 ## Customising sounds
 

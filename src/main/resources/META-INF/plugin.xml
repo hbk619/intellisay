@@ -129,5 +129,11 @@
                     keymap="$default"
                     first-keystroke="ctrl meta alt shift i"/>
         </action>
+        <action class="com.hbk619.intellisay.sound.VoiceOver"
+                text="Use VoiceOver">
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="ctrl meta alt shift v"/>
+        </action>
     </actions>
 </idea-plugin>

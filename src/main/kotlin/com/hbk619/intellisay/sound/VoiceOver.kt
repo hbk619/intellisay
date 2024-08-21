@@ -3,6 +3,8 @@ package com.hbk619.intellisay.sound
 import com.hbk619.intellisay.script.Runner
 import com.hbk619.intellisay.settings.AppSettingsState
 import com.intellij.execution.configurations.GeneralCommandLine
+import com.intellij.openapi.actionSystem.AnAction
+import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.diagnostic.Logger
 import java.nio.charset.Charset
@@ -24,5 +26,10 @@ fun validateVoiceOver() {
     log.debug("Applescript setting $output")
 }
 
-class VoiceOver {
+class VoiceOver: AnAction() {
+    override fun actionPerformed(event: AnActionEvent) {
+        val settingsState = AppSettingsState.instance
+        settingsState.useVoiceOver = !settingsState.useVoiceOver
+        sayText(event.project, "VoiceOver setting", "VoiceOver is ${if (settingsState.useVoiceOver) "on" else "off"}")
+    }
 }
