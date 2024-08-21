@@ -41,6 +41,7 @@
                                  id="com.hbk619.intellisay.settings.AppSettingsConfigurable"
                                  displayName="Intelli Say"/>
         <applicationService serviceImplementation="com.hbk619.intellisay.settings.AppSettingsState"/>
+        <applicationService serviceImplementation="com.hbk619.intellisay.project.ProjectState"/>
         <applicationService serviceImplementation="com.hbk619.intellisay.sound.SpeechQueue"
                         serviceInterface="com.hbk619.intellisay.sound.AudibleQueue"
                         testServiceImplementation="com.hbk619.intellisay.sound.MockAudibleQueue"/>
@@ -62,6 +63,8 @@
                   topic="com.intellij.xdebugger.breakpoints.XBreakpointListener"/>
         <listener class="com.hbk619.intellisay.files.FileEditorListener"
                   topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
+        <listener class="com.hbk619.intellisay.project.CompilationListener"
+                  topic="com.intellij.openapi.compiler.CompilationStatusListener"/>
     </projectListeners>
     <actions>
         <action class="com.hbk619.intellisay.files.FileNameListener"
@@ -105,6 +108,12 @@
             <keyboard-shortcut
                     keymap="$default"
                     first-keystroke="ctrl meta alt shift e"/>
+        </action>
+        <action class="com.hbk619.intellisay.project.CompileErrors"
+                text="Say Number of Compile Errors">
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="ctrl meta alt shift c"/>
         </action>
         <action class="com.hbk619.intellisay.issues.IssueReader"
                 text="Say Issue">
