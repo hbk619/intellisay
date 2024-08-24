@@ -138,11 +138,12 @@
                     keymap="$default"
                     first-keystroke="ctrl meta alt shift v"/>
         </action>
-        <action class="com.hbk619.intellisay.caret.CurrentContext"
+        <action class="com.hbk619.intellisay.caret.CurrentContext" id="IntelliSay.AnnounceContext"
                 text="Announce Context">
             <keyboard-shortcut
                     keymap="$default"
                     first-keystroke="ctrl meta alt u"/>
         </action>
     </actions>
+
 </idea-plugin>
