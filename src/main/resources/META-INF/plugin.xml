@@ -7,7 +7,12 @@
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
     <name>Intelli Say</name>
 
+    <!-- Product and plugin compatibility requirements.
+       Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+
+    <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.java</depends>
+    <depends optional="true" config-file="python.xml">com.intellij.modules.python</depends>
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor email="hbk619@users.noreply.github.com">hbk619</vendor>
 
@@ -30,9 +35,7 @@
         ]]>
     </description>
 
-    <!-- Product and plugin compatibility requirements.
-         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
-    <depends>com.intellij.modules.platform</depends>
+
 
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
@@ -134,6 +137,12 @@
             <keyboard-shortcut
                     keymap="$default"
                     first-keystroke="ctrl meta alt shift v"/>
+        </action>
+        <action class="com.hbk619.intellisay.caret.CurrentContext"
+                text="Announce Context">
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="ctrl meta alt u"/>
         </action>
     </actions>
 </idea-plugin>
