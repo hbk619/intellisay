@@ -23,6 +23,7 @@ dependencies {
     intellijPlatform {
         create("IC", "2024.1.1")
         bundledPlugins(providers.gradleProperty("platformPlugins").map { it.split(',') })
+        plugins(listOf("PythonCore:241.15989.150"))
 
         instrumentationTools()
         testFramework(TestFrameworkType.Platform)
@@ -55,16 +56,6 @@ kotlin {
     jvmToolchain(17)
 }
 
-
-val runIdeWithPlugins by intellijPlatformTesting.runIde.registering {
-    intellijPlatformTesting {
-        type = IntelliJPlatformType.IntellijIdeaUltimate
-        version = "2024.1.2"
-    }
-    plugins {
-        plugin("PythonId", "241.17011.79")
-    }
-}
 
 tasks {
     // Set the JVM compatibility versions
