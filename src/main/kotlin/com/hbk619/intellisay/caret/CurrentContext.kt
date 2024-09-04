@@ -5,13 +5,16 @@ import com.hbk619.intellisay.sound.sayText
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
+import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.util.PsiTreeUtil
+import com.jetbrains.python.psi.PyClass
 import com.jetbrains.python.psi.PyFunction
 import com.jetbrains.python.psi.PyParameterList
 
+const val NO_CODE_BLOCK = "Not in a code block"
 
 class CurrentContext : AnAction() {
     override fun actionPerformed(event: AnActionEvent) {
@@ -25,7 +28,7 @@ class CurrentContext : AnAction() {
 
         when (language.id) {
             "JAVA" -> {
-                val element: PsiElement = psiFile.findElementAt(offset) ?: return sayText(project, "Context", "No element found")
+                val element: PsiElement = psiFile.findElementAt(offset) ?: return sayText(project, "Context", NO_CODE_BLOCK)
                 val containingMethod = PsiTreeUtil.getParentOfType(element, PsiMethod::class.java)
                 infoBuilder.append(getMethodName(containingMethod?.name))
                 infoBuilder.append(" ")
@@ -41,12 +44,16 @@ class CurrentContext : AnAction() {
                     }
                 }
                 infoBuilder.append(" ")
-                val containingClass = containingMethod?.containingClass
-                infoBuilder.append(getClassName(containingClass?.name))
+                val containingClass = PsiTreeUtil.getParentOfType(element, PsiClass::class.java)
+                if (containingMethod == null && containingClass == null) {
+                    infoBuilder.clear().append(NO_CODE_BLOCK)
+                } else {
+                    infoBuilder.append(getClassName(containingClass?.name))
+                }
                 sayText(project, "Context", infoBuilder.toString())
             }
             "Python" -> {
-                val element: PsiElement = psiFile.findElementAt(offset) ?: return sayText(project, "Context", "No element found")
+                val element: PsiElement = psiFile.findElementAt(offset) ?: return sayText(project, "Context", NO_CODE_BLOCK)
                 val containingMethod = PsiTreeUtil.getParentOfType(element, PyFunction::class.java)
                 val parameters = PsiTreeUtil.getChildOfType(containingMethod, PyParameterList::class.java)
                 infoBuilder.append(getMethodName(containingMethod?.name))
@@ -65,8 +72,12 @@ class CurrentContext : AnAction() {
                 }
 
                 infoBuilder.append(". ")
-                val containingClass = containingMethod?.containingClass
-                infoBuilder.append(getClassName(containingClass?.name))
+                val containingClass = PsiTreeUtil.getParentOfType(element, PyClass::class.java)
+                if (containingMethod == null && containingClass == null) {
+                    infoBuilder.clear().append(NO_CODE_BLOCK)
+                } else {
+                    infoBuilder.append(getClassName(containingClass?.name))
+                }
                 sayText(project, "Context", infoBuilder.toString())
             }
             else -> {

@@ -44,10 +44,10 @@ class CurrentContextTest: BaseTestCase() {
         val queue = getAudibleQueue()
         UsefulTestCase.assertSize(1, queue.calls)
 
-        UsefulTestCase.assertEquals(listOf(myFixture.project, "Can't identify method  No class", "Context"), queue.calls[0].args)
+        UsefulTestCase.assertEquals(listOf(myFixture.project, "Can't identify method  Class is Main", "Context"), queue.calls[0].args)
     }
 
-    fun testOutsideJavaClass() {
+    fun testOutsideJavaClassOnWhitespace() {
         myFixture.configureByFile("src/Main.java")
 
         repeat(6) {
@@ -59,6 +59,32 @@ class CurrentContextTest: BaseTestCase() {
         val queue = getAudibleQueue()
         UsefulTestCase.assertSize(1, queue.calls)
 
-        UsefulTestCase.assertEquals(listOf(myFixture.project, "Can't identify method  No class", "Context"), queue.calls[0].args)
+        UsefulTestCase.assertEquals(listOf(myFixture.project, "Not in a code block", "Context"), queue.calls[0].args)
+    }
+
+    fun testOutsideJavaClassEndOfFile() {
+        myFixture.configureByFile("src/Main.java")
+
+        repeat(6) {
+            myFixture.performEditorAction(IdeActions.ACTION_EDITOR_MOVE_CARET_DOWN)
+        }
+
+        myFixture.performEditorAction("IntelliSay.AnnounceContext")
+
+        val queue = getAudibleQueue()
+        UsefulTestCase.assertSize(1, queue.calls)
+
+        UsefulTestCase.assertEquals(listOf(myFixture.project, "Not in a code block", "Context"), queue.calls[0].args)
+    }
+
+    fun testInPythonWithoutPythonPlugin() {
+        myFixture.configureByFile("something.py")
+
+        myFixture.performEditorAction("IntelliSay.AnnounceContext")
+
+        val queue = getAudibleQueue()
+        UsefulTestCase.assertSize(1, queue.calls)
+
+        UsefulTestCase.assertEquals(listOf(myFixture.project, "Python file detected but python plugin not enabled", "Context"), queue.calls[0].args)
     }
 }
