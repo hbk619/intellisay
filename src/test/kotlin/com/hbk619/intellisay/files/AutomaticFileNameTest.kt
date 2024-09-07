@@ -11,7 +11,7 @@ class AutomaticFileNameTest: BaseTestCase() {
     fun testTriggeringActionTogglesSetting() {
         myFixture.configureByFile("src/Main.java")
 
-        myFixture.performEditorAction("AutomaticFileNameSetting")
+        myFixture.performEditorAction("IntelliSay.AutomaticFileNameSetting")
 
         val queue = getAudibleQueue()
         UsefulTestCase.assertSize(1, queue.calls)
@@ -19,7 +19,7 @@ class AutomaticFileNameTest: BaseTestCase() {
         val call = queue.calls[0]
         UsefulTestCase.assertEquals(listOf("Reading file names is on", "Automatic file name settings"), call.args)
 
-        myFixture.performEditorAction("AutomaticFileNameSetting")
+        myFixture.performEditorAction("IntelliSay.AutomaticFileNameSetting")
 
         UsefulTestCase.assertSize(2, queue.calls)
 
