@@ -81,6 +81,9 @@ class CurrentContext : AnAction() {
                 sayText(project, "Context", infoBuilder.toString())
             }
             else -> {
+                if (psiFile.name.endsWith(".py")) {
+                    return sayText(project, "Context", "Python file detected but python plugin not enabled")
+                }
                 return sayText(project, "Context", "Language not supported")
             }
         }
