@@ -79,6 +79,7 @@
                     first-keystroke="ctrl meta alt l"/>
         </action>
         <action class="com.hbk619.intellisay.files.AutomaticFileNameSetting"
+                id="IntelliSay.AutomaticFileNameSetting"
                 text="Automatic File Name Announcement">
             <keyboard-shortcut
                     keymap="$default"
@@ -91,24 +92,28 @@
                     first-keystroke="ctrl meta alt v"/>
         </action>
         <action class="com.hbk619.intellisay.settings.WarningBeep"
+                id="IntelliSay.WarningBeepSetting"
                 text="Warning Beep">
             <keyboard-shortcut
                     keymap="$default"
                     first-keystroke="ctrl meta alt w"/>
         </action>
         <action class="com.hbk619.intellisay.settings.ErrorBeep"
+                id="IntelliSay.ErrorBeepSetting"
                 text="Error Beep">
             <keyboard-shortcut
                     keymap="$default"
                     first-keystroke="ctrl meta alt e"/>
         </action>
         <action class="com.hbk619.intellisay.settings.BreakpointBeep"
+                id="IntelliSay.BreakpointBeepSetting"
                 text="Breakpoint Beep">
             <keyboard-shortcut
                     keymap="$default"
                     first-keystroke="ctrl meta alt b"/>
         </action>
         <action class="com.hbk619.intellisay.settings.DumbModeAnnouncement"
+                id="IntelliSay.DumbModeAnnouncementSetting"
                 text="Dumb Mode Announcement">
             <keyboard-shortcut
                     keymap="$default"
