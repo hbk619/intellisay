@@ -40,7 +40,7 @@ class VoiceOverTest : BaseTestCase() {
 
         val queue = getAudibleQueue()
         UsefulTestCase.assertSize(1, queue.calls)
-        UsefulTestCase.assertEquals(listOf("Use VoiceOver is set to true but Allow VoiceOver to be controlled by Javascript is not set. Please use VoiceOver Utility to allow  VoiceOver to be controlled by Javascript", "Voiceover not configured"), queue.calls[0].args)
+        UsefulTestCase.assertEquals(listOf("Use VoiceOver is set to true but Allow VoiceOver to be controlled by AppleScript is not set. Please use VoiceOver Utility to allow  VoiceOver to be controlled by AppleScript", "Voiceover not configured"), queue.calls[0].args)
     }
 
     fun testValidateVoiceOverDisablesWhenAppleScriptDisabled() {
