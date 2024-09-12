@@ -1,3 +1,10 @@
 <idea-plugin>
     <extensions defaultExtensionNs="PythonCore"/>
+    <actions>
+        <action class="com.hbk619.intellisay.python.interpreter.SetInterpreterAction"
+                id="IntelliSay.SetInterpreter"
+                text="Set Python Interpreter">
+            <keyboard-shortcut first-keystroke="ctrl meta alt p" keymap="$default"/>
+        </action>
+    </actions>
 </idea-plugin>
