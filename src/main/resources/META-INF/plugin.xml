@@ -26,10 +26,15 @@
         <li>Play a different sound when caret enters an error</li>
         <li>Play a sound when navigating to line with a breakpoint (includes when breakpoint is hit)</li>
         <li>Play a sound when adding or removing breakpoints</li>
+        <li>Play a sound compilation succeeds or fails</li>
         <li>Ability to say a variable value while debugging via keyboard shortcut or quick action</li>
         <li>Ability to say the file name via keyboard shortcut or quick action</li>
         <li>Automatically announce file name when opened from the project explorer</li>
-    </ul>
+        <li>Announce when IDE enters or exists dumb mode (when functionality is limited)</li>
+        <li>Read compile errors for compiled languages</li>
+        <li>Announce the current content including method name, arguments and class name</li>
+        <li>If python plugin installed: Set the python interpreter via a dialog and typing the path to the folder that contains the virtual env (will automatically append bin/python), or an absolute path to a python binary</li>
+     </ul>
     <br/>
     Sounds can be customised via a setting and each sound can be enabled or disabled via a setting, keyboard shortcut or quick action
         ]]>
