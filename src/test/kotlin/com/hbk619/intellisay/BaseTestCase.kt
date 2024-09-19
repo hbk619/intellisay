@@ -2,6 +2,7 @@ package com.hbk619.intellisay
 
 import com.hbk619.intellisay.script.MockScriptRunner
 import com.hbk619.intellisay.script.Runner
+import com.hbk619.intellisay.settings.AppSettingsState
 import com.hbk619.intellisay.sound.AudibleQueue
 import com.hbk619.intellisay.sound.MockAudibleQueue
 import com.hbk619.intellisay.sound.MockPlayerQueue
@@ -36,6 +37,11 @@ abstract class BaseTestCase: BasePlatformTestCase() {
         } else {
             throw Exception("Real Player Queue used instead of mock")
         }
+    }
+
+    override fun setUp() {
+        super.setUp()
+        AppSettingsState.instance.dumbModeAnnouncementOn = false
     }
 
     override fun tearDown() {

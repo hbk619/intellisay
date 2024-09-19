@@ -12,7 +12,7 @@ class FileNameListenerTest: BaseTestCase() {
     fun testSayFileNameWhenFileOpened() {
         myFixture.configureByFile("src/Main.java")
 
-        myFixture.performEditorAction("FileNameListener")
+        myFixture.performEditorAction("IntelliSay.SayFileName")
 
         val queue = getAudibleQueue()
         UsefulTestCase.assertSize(1, queue.calls)
@@ -25,7 +25,7 @@ class FileNameListenerTest: BaseTestCase() {
         myFixture.configureByFile("src/Main.java")
 
         FileEditorManagerEx.getInstanceEx(project).closeAllFiles()
-        myFixture.performEditorAction("FileNameListener")
+        myFixture.performEditorAction("IntelliSay.SayFileName")
 
         val queue = getAudibleQueue()
         UsefulTestCase.assertSize(1, queue.calls)
