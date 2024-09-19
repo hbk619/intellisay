@@ -8,6 +8,7 @@ Makes intellij more useful for screen reader users by various features
 <li>Play a sound when navigating to line with a breakpoint (includes when breakpoint is hit)</li>
 <li>Play a sound when adding or removing breakpoints</li>
 <li>Play a sound compilation succeeds or fails</li>
+<li>Help dialog containing all the actions and their shortcuts</li>
 <li>Ability to say a variable value while debugging via keyboard shortcut or quick action</li>
 <li>Ability to say the file name via keyboard shortcut or quick action</li>
 <li>Automatically announce file name when opened from the project explorer</li>
@@ -75,6 +76,7 @@ Open the file ./build/distributions/intellisay-1.0-SNAPSHOT.zip then restart Int
 
 ### Shortcuts
 
+- control shift option h - Help dialog
 - control command option l - Say File Name
 - control command option v - Say Variable
 - control command option shift e - Say Number of Errors

@@ -78,6 +78,7 @@
     </projectListeners>
     <actions>
         <action class="com.hbk619.intellisay.files.FileNameListener"
+                id="IntelliSay.SayFileName"
                 text="Say File Name">
             <keyboard-shortcut
                     keymap="$default"
@@ -91,6 +92,7 @@
                     first-keystroke="ctrl meta alt h"/>
         </action>
         <action class="com.hbk619.intellisay.debugging.DebugListener"
+                id="IntelliSay.SayVariable"
                 text="Say Variable">
             <keyboard-shortcut
                     keymap="$default"
@@ -125,34 +127,46 @@
                     first-keystroke="ctrl meta alt shift d"/>
         </action>
         <action class="com.hbk619.intellisay.issues.WarningsAndErrors"
+                id="IntelliSay.SayNumberOfErrors"
                 text="Say Number of Errors">
             <keyboard-shortcut
                     keymap="$default"
                     first-keystroke="ctrl meta alt shift e"/>
         </action>
         <action class="com.hbk619.intellisay.project.CompileErrors"
+                id="IntelliSay.SayNumberOfCompileErrors"
                 text="Say Number of Compile Errors">
             <keyboard-shortcut
                     keymap="$default"
                     first-keystroke="ctrl meta alt shift c"/>
         </action>
         <action class="com.hbk619.intellisay.issues.IssueReader"
+                id="IntelliSay.SayIssue"
                 text="Say Issue">
             <keyboard-shortcut
                     keymap="$default"
                     first-keystroke="ctrl meta alt shift i"/>
         </action>
         <action class="com.hbk619.intellisay.sound.VoiceOver"
+                id="IntelliSay.UseVoiceover"
                 text="Use VoiceOver">
             <keyboard-shortcut
                     keymap="$default"
                     first-keystroke="ctrl meta alt shift v"/>
         </action>
-        <action class="com.hbk619.intellisay.caret.CurrentContext" id="IntelliSay.AnnounceContext"
+        <action class="com.hbk619.intellisay.caret.CurrentContext"
+                id="IntelliSay.AnnounceContext"
                 text="Announce Context">
             <keyboard-shortcut
                     keymap="$default"
                     first-keystroke="ctrl meta alt u"/>
+        </action>
+        <action class="com.hbk619.intellisay.help.HelpAction"
+                id="IntelliSay.Help"
+                text="Show Help">
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="ctrl shift alt h"/>
         </action>
     </actions>
 
