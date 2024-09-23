@@ -16,7 +16,7 @@ class VoiceOverTest : BaseTestCase() {
         val calls = mockRunner.calls
         assertEquals(1, calls.size)
         UsefulTestCase.assertSize(1, calls)
-        val commandLine = calls[0].args[0] as GeneralCommandLine
+        val commandLine = calls[0].args!![0] as GeneralCommandLine
 
         UsefulTestCase.assertEquals("defaults read com.apple.VoiceOver4/default SCREnableAppleScript" , commandLine.commandLineString)
         UsefulTestCase.assertEquals(Charsets.UTF_8, commandLine.charset)
@@ -32,7 +32,7 @@ class VoiceOverTest : BaseTestCase() {
         val calls = mockRunner.calls
         assertEquals(1, calls.size)
         UsefulTestCase.assertSize(1, calls)
-        val commandLine = calls[0].args[0] as GeneralCommandLine
+        val commandLine = calls[0].args!![0] as GeneralCommandLine
 
         UsefulTestCase.assertEquals("defaults read com.apple.VoiceOver4/default SCREnableAppleScript" , commandLine.commandLineString)
         UsefulTestCase.assertEquals(Charsets.UTF_8, commandLine.charset)
@@ -53,7 +53,7 @@ class VoiceOverTest : BaseTestCase() {
         val calls = mockRunner.calls
         assertEquals(1, calls.size)
         UsefulTestCase.assertSize(1, calls)
-        val commandLine = calls[0].args[0] as GeneralCommandLine
+        val commandLine = calls[0].args!![0] as GeneralCommandLine
 
         UsefulTestCase.assertEquals("defaults read com.apple.VoiceOver4/default SCREnableAppleScript" , commandLine.commandLineString)
         UsefulTestCase.assertEquals(Charsets.UTF_8, commandLine.charset)
@@ -70,7 +70,7 @@ class VoiceOverTest : BaseTestCase() {
         val calls = mockRunner.calls
         assertEquals(1, calls.size)
         UsefulTestCase.assertSize(1, calls)
-        val commandLine = calls[0].args[0] as GeneralCommandLine
+        val commandLine = calls[0].args!![0] as GeneralCommandLine
 
         UsefulTestCase.assertEquals("defaults read com.apple.VoiceOver4/default SCREnableAppleScript" , commandLine.commandLineString)
         UsefulTestCase.assertEquals(Charsets.UTF_8, commandLine.charset)
