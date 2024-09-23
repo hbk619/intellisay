@@ -50,6 +50,9 @@
                                  displayName="Intelli Say"/>
         <applicationService serviceImplementation="com.hbk619.intellisay.settings.AppSettingsState"/>
         <applicationService serviceImplementation="com.hbk619.intellisay.project.ProjectState"/>
+        <applicationService serviceImplementation="com.hbk619.intellisay.dialog.DialogService"
+                            serviceInterface="com.hbk619.intellisay.dialog.ModalService"
+                            testServiceImplementation="com.hbk619.intellisay.dialog.MockModalService"/>
         <applicationService serviceImplementation="com.hbk619.intellisay.sound.SpeechQueue"
                         serviceInterface="com.hbk619.intellisay.sound.AudibleQueue"
                         testServiceImplementation="com.hbk619.intellisay.sound.MockAudibleQueue"/>
@@ -59,6 +62,9 @@
         <applicationService serviceImplementation="com.hbk619.intellisay.script.ScriptRunner"
                             serviceInterface="com.hbk619.intellisay.script.Runner"
                             testServiceImplementation="com.hbk619.intellisay.script.MockScriptRunner"/>
+        <applicationService serviceImplementation="com.hbk619.intellisay.sdk.SDKUtils"
+                            serviceInterface="com.hbk619.intellisay.sdk.SDKHelper"
+                            testServiceImplementation="com.hbk619.intellisay.sdk.MockSDKHelper"/>
     </extensions>
     <applicationListeners>
         <listener
