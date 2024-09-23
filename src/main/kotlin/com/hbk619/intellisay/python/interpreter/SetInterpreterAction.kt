@@ -1,26 +1,26 @@
 package com.hbk619.intellisay.python.interpreter
 
+import com.hbk619.intellisay.dialog.ModalService
+import com.hbk619.intellisay.sdk.SDKHelper
 import com.hbk619.intellisay.sound.sayText
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.application.WriteAction
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.projectRoots.ProjectJdkTable
-import com.intellij.openapi.projectRoots.impl.SdkConfigurationUtil
 import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.openapi.vfs.VirtualFile
-import com.jetbrains.python.sdk.PythonSdkType
 import com.jetbrains.python.sdk.PythonSdkUtil
 
 
 class SetInterpreterAction: AnAction() {
     override fun actionPerformed(event: AnActionEvent) {
         val project = event.project ?: return sayText(null, "Set Interpreter", "No project open")
-        val projectRootManager = ProjectRootManager.getInstance(project)
-        val interpreterDialog = InterpreterDialog()
-        if (interpreterDialog.showAndGet()) {
-            val sdkHomePath = getSdkHomePath(project, interpreterDialog)
+        val dialogService = ApplicationManager.getApplication().getService(ModalService::class.java)
+        if (dialogService.createAndShowPythonInterpreterDialog()) {
+            val sdkHomePath = getSdkHomePath(project, dialogService)
             val sdkHome = WriteAction.compute<VirtualFile, RuntimeException> {
                 LocalFileSystem.getInstance().refreshAndFindFileByPath(sdkHomePath)
             }
@@ -28,15 +28,8 @@ class SetInterpreterAction: AnAction() {
             if (sdkHome == null) {
                 return say(project, "Interpreter path $sdkHomePath not found")
             }
-
-            val sdk = SdkConfigurationUtil.setupSdk(
-                emptyArray(),
-                sdkHome,
-                PythonSdkType.getInstance(),
-                false,
-                null,
-                sdkHome.path
-            )
+            val sdkUtils = ApplicationManager.getApplication().getService(SDKHelper::class.java)
+            val sdk = sdkUtils.createPythonSdk(sdkHome)
 
             if (sdk != null) {
                 WriteAction.run<Throwable> {
@@ -45,6 +38,7 @@ class SetInterpreterAction: AnAction() {
                         val sdkTable = ProjectJdkTable.getInstance()
                         sdkTable.addJdk(sdk)
                     }
+                    val projectRootManager = ProjectRootManager.getInstance(project)
                     projectRootManager.projectSdk = sdk
                 }
                 say(project, "Python interpreter ${sdk.homePath} will be used as a project SDK")
@@ -54,9 +48,9 @@ class SetInterpreterAction: AnAction() {
 
     private fun getSdkHomePath(
         project: Project,
-        interpreterDialog: InterpreterDialog
+        interpreterDialog: ModalService
     ): String {
-        val userPath = interpreterDialog.getPythonLocation()
+        val userPath = interpreterDialog.getPythonInterpreterLocation()
         return if (userPath.startsWith("/")) {
             userPath
         } else {
