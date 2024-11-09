@@ -100,6 +100,8 @@ Below is the list of file names to use to replace sounds
 
 - error.wav
 - warning.wav
+- compile_error.wav
+- compile_warning.wav
 - breakpoint-added.wav
 - breakpoint-removed.wav
 - breakpoint.wav

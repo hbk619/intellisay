@@ -15,7 +15,9 @@ import javax.sound.sampled.AudioSystem
 
 enum class Sound(val fileName: String) {
     ERROR("error.wav"),
+    COMPILE_ERROR("compile_error.wav"),
     WARNING("warning.wav"),
+    COMPILE_WARNING("compile_warning.wav"),
     BREAKPOINT_ADDED("breakpoint-added.wav"),
     BREAKPOINT_REMOVED("breakpoint-removed.wav"),
     BREAKPOINT("breakpoint.wav")
