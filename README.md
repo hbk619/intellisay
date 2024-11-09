@@ -13,7 +13,7 @@ Makes intellij more useful for screen reader users by various features
 <li>Ability to say the file name via keyboard shortcut or quick action</li>
 <li>Automatically announce file name when opened from the project explorer</li>
 <li>Announce when IDE enters or exists dumb mode (when functionality is limited)</li>
-<li>Read compile errors for compiled languages</li>
+<li>Read compile errors and warnings for compiled languages</li>
 <li>Announce the current content including method name, arguments and class name</li>
 <li>If python plugin installed: Set the python interpreter via a dialog and typing the path to the folder that contains the virtual env (will automatically append bin/python), or an absolute path to a python binary</li>
 </ul>
