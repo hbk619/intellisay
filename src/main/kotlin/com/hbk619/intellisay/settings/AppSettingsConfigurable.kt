@@ -27,12 +27,13 @@ internal class AppSettingsConfigurable : Configurable {
     override fun isModified(): Boolean {
         val settings: AppSettingsState = AppSettingsState.instance
         var modified: Boolean = !mySettingsComponent?.soundsLocationText.equals(settings.soundsLocation)
-        modified = modified or mySettingsComponent!!.isWarningBeepOn != settings.warningsOn
-        modified = modified or mySettingsComponent!!.isErrorBeepOn != settings.errorsOn
-        modified = modified or mySettingsComponent!!.isBreakpointBeepOn != settings.breakpointsOn
-        modified = modified or mySettingsComponent!!.isAutomaticFileNameOn != settings.automaticFileNameOn
-        modified = modified or mySettingsComponent!!.isDumbModeAnnouncementOn != settings.dumbModeAnnouncementOn
-        modified = modified or mySettingsComponent!!.isUseVoiceOverOn != settings.useVoiceOver
+        modified = modified or (mySettingsComponent!!.isWarningBeepOn != settings.warningsOn)
+        modified = modified or (mySettingsComponent!!.isErrorBeepOn != settings.errorsOn)
+        modified = modified or (mySettingsComponent!!.isCompileWarningsOn != settings.compileWarningsOn)
+        modified = modified or (mySettingsComponent!!.isBreakpointBeepOn != settings.breakpointsOn)
+        modified = modified or (mySettingsComponent!!.isAutomaticFileNameOn != settings.automaticFileNameOn)
+        modified = modified or (mySettingsComponent!!.isDumbModeAnnouncementOn != settings.dumbModeAnnouncementOn)
+        modified = modified or (mySettingsComponent!!.isUseVoiceOverOn != settings.useVoiceOver)
         return modified
     }
 
