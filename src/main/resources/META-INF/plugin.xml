@@ -172,7 +172,7 @@
                 text="Show Help">
             <keyboard-shortcut
                     keymap="$default"
-                    first-keystroke="ctrl shift alt h"/>
+                    first-keystroke="ctrl meta shift alt h"/>
         </action>
     </actions>
 

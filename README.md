@@ -76,7 +76,7 @@ Open the file ./build/distributions/intellisay-1.0-SNAPSHOT.zip then restart Int
 
 ### Shortcuts
 
-- control shift option h - Help dialog
+- control command shift option h - Help dialog
 - control command option l - Say File Name
 - control command option v - Say Variable
 - control command option shift e - Say Number of Errors
