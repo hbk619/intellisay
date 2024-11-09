@@ -12,6 +12,7 @@ internal class AppSettingsState : PersistentStateComponent<AppSettingsState?> {
     var soundsLocation: String = ""
     var warningsOn: Boolean = true
     var errorsOn: Boolean = true
+    var compileWarningsOn: Boolean = true
     var breakpointsOn: Boolean = true
     var automaticFileNameOn: Boolean = false
     var useVoiceOver: Boolean = SystemInfo.isMac

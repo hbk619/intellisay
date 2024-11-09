@@ -1,5 +1,6 @@
 package com.hbk619.intellisay.project
 
+import com.hbk619.intellisay.settings.AppSettingsState
 import com.hbk619.intellisay.sound.Sound
 import com.hbk619.intellisay.sound.playSound
 import com.intellij.openapi.compiler.CompilationStatusListener
@@ -22,7 +23,9 @@ class CompilationListener : CompilationStatusListener {
         }
         if (warnings > 0) {
             log.debug("Compilation finished with $warnings warning")
-            playSound(compileContext.project, "Compile warning", Sound.COMPILE_WARNING)
+            if (AppSettingsState.instance.compileWarningsOn) {
+                playSound(compileContext.project, "Compile warning", Sound.COMPILE_WARNING)
+            }
             projectState.lastCompileWarnings =
                 compileContext.getMessages(CompilerMessageCategory.WARNING).toList()
         } else {

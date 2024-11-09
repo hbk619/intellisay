@@ -12,6 +12,7 @@ class AppSettingsComponent {
     private val soundsLocation = JBTextField()
     private val warningsOn = JBCheckBox("Beep on warning", true)
     private val errorsOn = JBCheckBox("Beep on error", true)
+    private val compileWarningsOn = JBCheckBox("Beep on compile warning", true)
     private val breakpointsOn = JBCheckBox("Beep on breakpoint", true)
     private val automaticFileNameOn = JBCheckBox("Automatically announce file names", true)
     private val dumbModeAnnouncementOn = JBCheckBox("Automatically announce dumb mode which is when limited features are available", true)
@@ -22,6 +23,7 @@ class AppSettingsComponent {
             .addLabeledComponent(JBLabel("Sounds location: "), soundsLocation, 1, false)
             .addComponent(warningsOn, 1)
             .addComponent(errorsOn, 1)
+            .addComponent(compileWarningsOn, 1)
             .addComponent(breakpointsOn, 1)
             .addComponent(automaticFileNameOn, 1)
             .addComponent(dumbModeAnnouncementOn, 1)
@@ -48,6 +50,11 @@ class AppSettingsComponent {
         get() = errorsOn.isSelected
         set(newVal) {
             errorsOn.setSelected(newVal)
+        }
+    var isCompileWarningsOn: Boolean
+        get() = compileWarningsOn.isSelected
+        set(newVal) {
+            compileWarningsOn.setSelected(newVal)
         }
     var isBreakpointBeepOn: Boolean
         get() = breakpointsOn.isSelected

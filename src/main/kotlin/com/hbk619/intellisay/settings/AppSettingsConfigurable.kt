@@ -42,6 +42,7 @@ internal class AppSettingsConfigurable : Configurable {
         settings.soundsLocation = mySettingsComponent?.soundsLocationText ?: ""
         settings.warningsOn = mySettingsComponent?.isWarningBeepOn!!
         settings.errorsOn = mySettingsComponent?.isErrorBeepOn!!
+        settings.compileWarningsOn = mySettingsComponent?.isCompileWarningsOn!!
         settings.breakpointsOn = mySettingsComponent?.isBreakpointBeepOn!!
         settings.automaticFileNameOn = mySettingsComponent?.isAutomaticFileNameOn!!
         settings.dumbModeAnnouncementOn = mySettingsComponent?.isDumbModeAnnouncementOn!!
@@ -53,6 +54,7 @@ internal class AppSettingsConfigurable : Configurable {
         mySettingsComponent?.soundsLocationText = settings.soundsLocation
         mySettingsComponent?.isWarningBeepOn = settings.warningsOn
         mySettingsComponent?.isErrorBeepOn = settings.errorsOn
+        mySettingsComponent?.isCompileWarningsOn = settings.compileWarningsOn
         mySettingsComponent?.isBreakpointBeepOn = settings.breakpointsOn
         mySettingsComponent?.isAutomaticFileNameOn = settings.automaticFileNameOn
         mySettingsComponent?.isDumbModeAnnouncementOn = settings.dumbModeAnnouncementOn

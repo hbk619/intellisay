@@ -118,6 +118,13 @@
                     keymap="$default"
                     first-keystroke="ctrl meta alt e"/>
         </action>
+        <action class="com.hbk619.intellisay.settings.CompileWarningBeep"
+                id="IntelliSay.CompileWarningBeepSetting"
+                text="Compile Warning Beep">
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="ctrl meta alt c"/>
+        </action>
         <action class="com.hbk619.intellisay.settings.BreakpointBeep"
                 id="IntelliSay.BreakpointBeepSetting"
                 text="Breakpoint Beep">
