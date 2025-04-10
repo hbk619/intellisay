@@ -69,7 +69,8 @@ Rename the file to `say.exe` and the containing folder to your PATH variable (in
 6. Enter the directory path and click OK.
 
 ### Downloading
-Download the [latest release intellisay-1.0-SNAPSHOT.zip](https://github.com/hbk619/intellisay/releases/)
+Download the [latest release intellisay-1.0-SNAPSHOT.zip](https://github.com/hbk619/intellisay/releases/download/v1.0-SNAPSHOT/intellisay-1.0-SNAPSHOT.zip)
+Check the [releases page](https://github.com/hbk619/intellisay/releases/) for full details.
 
 #### Add to IntelliJ
 
