@@ -37,6 +37,9 @@
      </ul>
     <br/>
     Sounds can be customised via a setting and each sound can be enabled or disabled via a setting, keyboard shortcut or quick action
+    <br/>
+    Speech requires either Voiceover to allow Applescript or a <code>say</code> command to be available.
+    Check the <a href="https://github.com/hbk619/intellisay?tab=readme-ov-file#prerequisites">prerequistes for using speech</a> for full details
         ]]>
     </description>
 

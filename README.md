@@ -53,9 +53,33 @@ Then create a symlink from your /usr/local/bin folder to the spd-say with the be
 sudo ln -s your-spd-say-location /usr/local/bin/say
 ```
 
+### Windows (untested)
+
+For spoken words you will need a say command that accepts a string of text.
+The instructions below have not been tested or verified, so use at your own risk!
+[Wsay](https://github.com/p-groarke/wsay) is a library that provides an executable called `wsay.exe` which
+you can download from the [Wsay releases page](https://github.com/p-groarke/wsay/releases).
+Rename the file to `say.exe` and the containing folder to your PATH variable (instructions below).
+
+1. Right-click the Start menu and select System.
+2. Go to Advanced system settings > Environment Variables…
+3. Select PATH under "System variables" or "User variables."
+4. Click Edit.
+5. Click New
+6. Enter the directory path and click OK.
+
+### Downloading
+Download the [latest release intellisay-1.0-SNAPSHOT.zip](https://github.com/hbk619/intellisay/releases/)
+
+#### Add to IntelliJ
+
+Press shift twice to bring up the quick actions menu and select "Install plugin from Disk".
+Select the downloaded zip and restart IntelliJ. You should hear "IntelliSay has started",
+if not check [troubleshooting](#troubleshooting)
 
 ### Building
-Install a JDK ([OracleJDK](https://www.oracle.com/java/technologies/downloads/#jdk21-mac) can be downloaded or brew can [install OpenJDK](https://stackoverflow.com/a/65601197))
+If you prefer to build yourself you will need to install a JDK ([OracleJDK](https://www.oracle.com/java/technologies/downloads/#jdk21-mac) can be downloaded or
+brew can [install OpenJDK](https://stackoverflow.com/a/65601197))
 
 Clone this repo
 
@@ -69,10 +93,10 @@ Build the plugin
 ./gradlew buildPlugin
 `
 
-### Add to IntelliJ
-
+#### To add to IntelliJ
 Press shift twice to bring up the quick actions menu and select "Install plugin from Disk".
-Open the file ./build/distributions/intellisay-1.0-SNAPSHOT.zip then restart IntelliJ
+Open the file ./build/distributions/intellisay-1.0-SNAPSHOT.zip then restart IntelliJ. You should hear "IntelliSay has started",
+if not check [troubleshooting](#troubleshooting)
 
 ### Shortcuts
 
@@ -120,3 +144,17 @@ git config core.sparseCheckout true
 echo "java/mockJDK-1.9/jre/lib" > .git/info/sparse-checkout
 git pull origin master --depth 1
 ```
+
+## Troubleshooting
+### I can't hear "IntelliSay has started"
+From a terminal run `say "hello there"`. If this fails, check the output, you might not have a say command in which
+case go to [prerequisites](#prerequisites) and follow instructions.
+
+### I set it to use Voiceover but it's using say
+Check [Allow VoiceOver to be controlled with AppleScript](#macos) is selected and Voiceover is on (control command option v)
+or "Use Voiceover when available" is selected in the preferences dialog (File -> Settings -> Tools -> IntelliSay) .
+Restart IntelliJ
+
+### I can't hear beeps
+Check beeps for warnings/errors etc are enabled, you can use the [shortcuts](#shortcuts) or preferences dialog
+(File -> Settings -> Tools -> IntelliSay) 
