@@ -159,3 +159,19 @@ Restart IntelliJ
 ### I can't hear beeps
 Check beeps for warnings/errors etc are enabled, you can use the [shortcuts](#shortcuts) or preferences dialog
 (File -> Settings -> Tools -> IntelliSay) 
+
+### Shortcuts don't work on Windows/linux
+
+There is an [open issue about the meta key on Windows/Linux](https://youtrack.jetbrains.com/issue/IJPL-61243/Unable-to-use-Windows-as-a-modifier-key-in-keymap)
+with a workaround in the IDE, select Help then Edit Custom Properties... and paste the below into the file that opens and restart the IDE
+
+`keymap.windows.as.meta=true`
+
+Alternatively, if you're comfortable with xmodmap on linux you can use it to globally remap the super key to meta e.g.
+
+```
+remove mod4 = Super_L
+add mod4 = Meta_L
+```
+
+However, this may affect other applications so use with caution!
