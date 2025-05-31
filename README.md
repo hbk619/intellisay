@@ -175,3 +175,9 @@ add mod4 = Meta_L
 ```
 
 However, this may affect other applications so use with caution!
+
+## Thank yous
+Many thanks to the work from [AudioCue](https://github.com/philfrei/AudioCue-maven/tree/main) who's source
+has been copied into this repo for easier auditing by those who work for places that want tighter control
+over installed software. Without this [audio on Linux often crashed](https://github.com/hbk619/intellisay/issues/1)!
+The original Java was auto converted to Kotlin with IntelliJ.

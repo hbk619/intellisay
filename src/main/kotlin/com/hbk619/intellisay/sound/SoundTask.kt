@@ -10,8 +10,6 @@ import java.net.URI
 import java.net.URL
 import java.nio.file.Files
 import java.nio.file.Path
-import javax.sound.sampled.AudioInputStream
-import javax.sound.sampled.AudioSystem
 
 enum class Sound(val fileName: String) {
     ERROR("error.wav"),
@@ -30,27 +28,30 @@ fun playSound(project: Project?, title: String, sound: Sound) {
 
 class SoundTask(project: Project?, title: String, private val sound: Sound) : Task.Backgroundable(project, title) {
     private val log = Logger.getInstance(PlayerQueue::class.java)
-
     override fun run(progressIndicator: ProgressIndicator) {
         try {
             val pathToSound = getSoundFileURL()
-            val audioInputStream: AudioInputStream = AudioSystem.getAudioInputStream(pathToSound)
-            val clip = AudioSystem.getClip()
-            clip.open(audioInputStream)
-            clip.start()
-            while (clip.framePosition<clip.frameLength) {
+            val clip = AudioCache.getClip(pathToSound)
+            val id: Int = clip.obtainInstance()
+            clip.setVolume(id, 1.0)
+            clip.setRecycleWhenDone(id, true)
+            clip.start(id)
+
+            while (clip.getIsPlaying(id)) {
                 log.debug("Running sound $sound")
             }
+
+            clip.releaseInstance(id);
         } catch (e: Exception) {
             log.error(e)
         }
     }
 
-    private fun getSoundFileURL(): URL? {
+    private fun getSoundFileURL(): URL {
         val customFolder = AppSettingsState.instance.soundsLocation
         val customPathToSound = Path.of(customFolder, sound.fileName)
 
-        var pathToSound = PlayerQueue::class.java.getResource(sound.fileName)
+        var pathToSound = PlayerQueue::class.java.getResource(sound.fileName)!!
         if (customFolder.isNotEmpty() && Files.exists(customPathToSound)) {
             pathToSound = URI.create("file:${customPathToSound}").toURL()
             log.debug("Using custom sound ${pathToSound?.path}")
