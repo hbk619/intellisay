@@ -267,9 +267,9 @@ class AudioMixer @JvmOverloads constructor(
         fun fillBufferFromTracks(normalizedOut: FloatArray): FloatArray {
             // loop through all tracks, summing
             for (n in 0..<tracksCount) {
-                if (mixerTracks[n]!!.isTrackRunning()) {
+                if (mixerTracks[n].isTrackRunning()) {
                     try {
-                        audioData = mixerTracks[n]!!.readTrack()!!
+                        audioData = mixerTracks[n].readTrack()!!
                         for (i in 0..<readBufferSize) {
                             normalizedOut[i] += audioData[i]
                         }

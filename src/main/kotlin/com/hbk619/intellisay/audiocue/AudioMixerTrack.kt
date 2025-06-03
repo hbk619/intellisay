@@ -54,7 +54,7 @@ interface AudioMixerTrack {
      * audio mix, if `false` this track will not be
      * included
      */
-    fun setTrackRunning(bool: Boolean)
+    fun setTrackRunning(trackRunning: Boolean)
 
     /**
      * Reads one buffer of normalized audio data frames of

@@ -424,7 +424,7 @@ class AudioCue private constructor(
         playerRunning = true
         t.start()
 
-        broadcastOpenEvent(t.getPriority(), bufferFrames, name)
+        broadcastOpenEvent(t.getPriority(), bufferFrames)
     }
 
     /**
@@ -468,7 +468,7 @@ class AudioCue private constructor(
 
         broadcastOpenEvent(
             audioMixer.threadPriority,
-            audioMixer.bufferFrames, name
+            audioMixer.bufferFrames
         )
     }
 
@@ -501,7 +501,7 @@ class AudioCue private constructor(
 
         playerRunning = false
 
-        broadcastCloseEvent(name)
+        broadcastCloseEvent()
     }
 
     val frameLength: Long
@@ -1487,7 +1487,7 @@ class AudioCue private constructor(
     // Following are methods that broadcast events to registered listeners.
     private fun broadcastOpenEvent(
         threadPriority: Int,
-        bufferSize: Int, name: String?
+        bufferSize: Int
     ) {
         for (acl in listeners) {
             acl.audioCueOpened(
@@ -1497,7 +1497,7 @@ class AudioCue private constructor(
         }
     }
 
-    private fun broadcastCloseEvent(name: String?) {
+    private fun broadcastCloseEvent() {
         for (acl in listeners) {
             acl.audioCueClosed(System.currentTimeMillis(), this)
         }
@@ -1660,7 +1660,7 @@ class AudioCue private constructor(
         private fun loadURL(url: URL): FloatArray {
             val ais = AudioSystem.getAudioInputStream(url)
 
-            var framesCount = 0
+            var framesCount: Int
             if (ais.getFrameLength() > Int.Companion.MAX_VALUE shr 1) {
                 println(
                     "WARNING: Clip is too large to entirely fit!"
