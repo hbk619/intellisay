@@ -933,7 +933,7 @@ class AudioCue private constructor(
 
     /**
      * Returns a value indicating the current volume setting
-     * of an `AudioCue` instance, ranging [0..1].
+     * of an `AudioCue` instance.
      *
      * @param instanceID - an `int` used to identify the
      * `AudioCue` instance
@@ -959,16 +959,14 @@ class AudioCue private constructor(
      * most recent volume change takes precedence.
      *
      *
-     * Arguments are clamped to the range [0..1], with 0 denoting
-     * silence and 1 denoting the natural volume of the sample. In
-     * other words, the volume control can only diminish the volume
-     * of the media, not amplify it. Internally, the volume argument
-     * is used as a factor that is directly multiplied against the
-     * media's PCM values.
+     * 0 denotes silence and 1 denoting the natural volume of the sample.
+     * Internally, the volume argument is used as a factor that is directly
+     * multiplied against the media's PCM values. Increasing the volume
+     * above will begin to distort the sound.
      *
      * @param  instanceID - an `int` used to identify the
      * `AudioCue` instance
-     * @param  volume     - a `float` in the range [0, 1]
+     * @param  volume     - a `float`
      * multiplied against the audio values
      * @throws IllegalStateException if instance is not active
      * @see .getVolume
@@ -979,7 +977,7 @@ class AudioCue private constructor(
                     + instanceID + " is inactive")
         }
 
-        cursors[instanceID].newTargetVolume = min(1.0, max(0.0, volume)).toFloat()
+        cursors[instanceID].newTargetVolume = volume.toFloat()
     }
 
     /**

@@ -33,7 +33,7 @@ class SoundTask(project: Project?, title: String, private val sound: Sound) : Ta
             val pathToSound = getSoundFileURL()
             val clip = AudioCache.getClip(pathToSound)
             val id: Int = clip.obtainInstance()
-            clip.setVolume(id, 1.0)
+            clip.setVolume(id, AppSettingsState.instance.volume)
             clip.setRecycleWhenDone(id, true)
             clip.start(id)
 
