@@ -17,6 +17,7 @@ internal class AppSettingsState : PersistentStateComponent<AppSettingsState?> {
     var automaticFileNameOn: Boolean = false
     var useVoiceOver: Boolean = SystemInfo.isMac
     var dumbModeAnnouncementOn: Boolean = true
+    var volume: Double = 1.0
 
     override fun getState(): AppSettingsState {
         return this

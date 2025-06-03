@@ -36,7 +36,7 @@
         <li>If python plugin installed: Set the python interpreter via a dialog and typing the path to the folder that contains the virtual env (will automatically append bin/python), or an absolute path to a python binary</li>
      </ul>
     <br/>
-    Sounds can be customised via a setting and each sound can be enabled or disabled via a setting, keyboard shortcut or quick action
+    Sounds can be customised via a setting and each sound can be enabled or disabled via a setting, keyboard shortcut or quick action, the volume can also be adjusted.
     <br/>
     Speech requires either Voiceover to allow Applescript or a <code>say</code> command to be available.
     Check the <a href="https://github.com/hbk619/intellisay?tab=readme-ov-file#prerequisites">prerequistes for using speech</a> for full details
@@ -141,6 +141,20 @@
             <keyboard-shortcut
                     keymap="$default"
                     first-keystroke="ctrl meta alt shift d"/>
+        </action>
+        <action class="com.hbk619.intellisay.settings.VolumeUp"
+                id="IntelliSay.VolumeUpSetting"
+                text="Volume Up">
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="ctrl meta alt shift UP"/>
+        </action>
+        <action class="com.hbk619.intellisay.settings.VolumeDown"
+                id="IntelliSay.VolumeDownSetting"
+                text="Volume Down">
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="ctrl meta alt shift DOWN"/>
         </action>
         <action class="com.hbk619.intellisay.issues.WarningsAndErrors"
                 id="IntelliSay.SayNumberOfErrors"
