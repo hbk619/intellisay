@@ -14,6 +14,7 @@ import com.intellij.openapi.projectRoots.impl.SdkConfigurationUtil
 import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.openapi.vfs.VirtualFile
+import com.intellij.openapi.vfs.newvfs.impl.VfsRootAccess
 import com.intellij.testFramework.UsefulTestCase
 import java.awt.event.InputEvent
 
@@ -73,7 +74,9 @@ class SetInterpreterActionTest: BaseTestCase() {
 
     fun testSetsProjectInterpreterIfAbsolutePathValidAndSDKExistsAndAnnounces() {
         myFixture.configureByFile("main.py")
-        val pythonPath = "${System.getProperty("user.dir")}/${myFixture.testDataPath}/venv/bin/python"
+        val projectDir = "${System.getProperty("user.dir")}/${myFixture.testDataPath}"
+        VfsRootAccess.allowRootAccess(myFixture.testRootDisposable, projectDir)
+        val pythonPath = "${projectDir}/venv/bin/python"
         val sdkHome = WriteAction.compute<VirtualFile, RuntimeException> {
             LocalFileSystem.getInstance().refreshAndFindFileByPath(pythonPath)
         }

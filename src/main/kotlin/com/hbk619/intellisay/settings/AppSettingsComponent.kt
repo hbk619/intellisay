@@ -17,6 +17,7 @@ class AppSettingsComponent {
     private val automaticFileNameOn = JBCheckBox("Automatically announce file names", true)
     private val dumbModeAnnouncementOn = JBCheckBox("Automatically announce dumb mode which is when limited features are available", true)
     private val voiceOverOn = JBCheckBox("Use VoiceOver when available", true)
+    private val volume = JBTextField("Volume (between 0 and 1)")
 
     init {
         panel = FormBuilder.createFormBuilder()
@@ -28,6 +29,7 @@ class AppSettingsComponent {
             .addComponent(automaticFileNameOn, 1)
             .addComponent(dumbModeAnnouncementOn, 1)
             .addComponent(voiceOverOn, 1)
+            .addLabeledComponent(JBLabel("Volume"), volume, 1, false)
             .addComponentFillVertically(JPanel(), 0)
             .panel
     }
@@ -78,5 +80,11 @@ class AppSettingsComponent {
         get() = voiceOverOn.isSelected
         set(newVal) {
             voiceOverOn.setSelected(newVal)
+        }
+
+    var volumeNumber: Double
+        get() = volume.text.toDouble()
+        set(newVal) {
+            volume.text = newVal.toString()
         }
 }

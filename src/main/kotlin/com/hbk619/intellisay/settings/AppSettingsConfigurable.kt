@@ -34,6 +34,7 @@ internal class AppSettingsConfigurable : Configurable {
         modified = modified or (mySettingsComponent!!.isAutomaticFileNameOn != settings.automaticFileNameOn)
         modified = modified or (mySettingsComponent!!.isDumbModeAnnouncementOn != settings.dumbModeAnnouncementOn)
         modified = modified or (mySettingsComponent!!.isUseVoiceOverOn != settings.useVoiceOver)
+        modified = modified or (mySettingsComponent!!.volumeNumber != settings.volume)
         return modified
     }
 
@@ -47,6 +48,7 @@ internal class AppSettingsConfigurable : Configurable {
         settings.automaticFileNameOn = mySettingsComponent?.isAutomaticFileNameOn!!
         settings.dumbModeAnnouncementOn = mySettingsComponent?.isDumbModeAnnouncementOn!!
         settings.useVoiceOver = mySettingsComponent?.isUseVoiceOverOn!!
+        settings.volume = mySettingsComponent?.volumeNumber ?: 1.0
     }
 
     override fun reset() {
@@ -59,6 +61,7 @@ internal class AppSettingsConfigurable : Configurable {
         mySettingsComponent?.isAutomaticFileNameOn = settings.automaticFileNameOn
         mySettingsComponent?.isDumbModeAnnouncementOn = settings.dumbModeAnnouncementOn
         mySettingsComponent?.isUseVoiceOverOn = settings.useVoiceOver
+        mySettingsComponent?.volumeNumber = settings.volume
     }
 
     override fun disposeUIResources() {

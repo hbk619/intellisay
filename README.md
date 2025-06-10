@@ -18,7 +18,8 @@ Makes intellij more useful for screen reader users by various features
 <li>If python plugin installed: Set the python interpreter via a dialog and typing the path to the folder that contains the virtual env (will automatically append bin/python), or an absolute path to a python binary</li>
 </ul>
 <br/>
-Sounds can be customised via a setting and each sound can be enabled or disabled via a setting, keyboard shortcut or quick action
+Sounds can be customised via a setting and each sound can be enabled or disabled via a setting, keyboard shortcut or quick action,
+the volume can also be adjusted.
 
 This has only been tested on MacOS so far.
 
@@ -69,8 +70,7 @@ Rename the file to `say.exe` and the containing folder to your PATH variable (in
 6. Enter the directory path and click OK.
 
 ### Downloading
-Download the [latest release intellisay-1.0-SNAPSHOT.zip](https://github.com/hbk619/intellisay/releases/download/v1.0-SNAPSHOT/intellisay-1.0-SNAPSHOT.zip)
-Check the [releases page](https://github.com/hbk619/intellisay/releases/) for full details.
+Download the latest release called intellisay.zip from the [latest release page](https://github.com/hbk619/intellisay/releases/latest)
 
 #### Add to IntelliJ
 
@@ -101,6 +101,8 @@ if not check [troubleshooting](#troubleshooting)
 
 ### Shortcuts
 
+On Windows/Linux command is meta and option is alt.
+
 - control command shift option h - Help dialog
 - control command option l - Say File Name
 - control command option v - Say Variable
@@ -113,6 +115,8 @@ if not check [troubleshooting](#troubleshooting)
 - control command option b - Toggle Breakpoint Beep
 - control command option v - Toggle VoiceOver
 - control command option d - Toggle Dumb Mode Announcements
+- control command option shift down - Volume down
+- control command option shift up - Volume up
 
 ## Customising sounds
 
@@ -151,6 +155,8 @@ git pull origin master --depth 1
 From a terminal run `say "hello there"`. If this fails, check the output, you might not have a say command in which
 case go to [prerequisites](#prerequisites) and follow instructions.
 
+Check your default sound output device on your system.
+
 ### I set it to use Voiceover but it's using say
 Check [Allow VoiceOver to be controlled with AppleScript](#macos) is selected and Voiceover is on (control command option v)
 or "Use Voiceover when available" is selected in the preferences dialog (File -> Settings -> Tools -> IntelliSay) .
@@ -158,7 +164,9 @@ Restart IntelliJ
 
 ### I can't hear beeps
 Check beeps for warnings/errors etc are enabled, you can use the [shortcuts](#shortcuts) or preferences dialog
-(File -> Settings -> Tools -> IntelliSay) 
+(File -> Settings -> Tools -> IntelliSay)
+
+Check your default sound output device on your system.
 
 ### Shortcuts don't work on Windows/linux
 
@@ -175,3 +183,12 @@ add mod4 = Meta_L
 ```
 
 However, this may affect other applications so use with caution!
+
+### The sounds sound awful!
+If it's not just personal taste, try lowering the volume (control command option shift down or control meta alt shift down).
+
+## Thank yous
+Many thanks to the work from [AudioCue](https://github.com/philfrei/AudioCue-maven/tree/main) who's source
+has been copied into this repo for easier auditing by those who work for places that want tighter control
+over installed software, along with unrestricting the maximum volume. Without this [audio on Linux often crashed](https://github.com/hbk619/intellisay/issues/1)!
+The original Java was auto converted to Kotlin with IntelliJ.
