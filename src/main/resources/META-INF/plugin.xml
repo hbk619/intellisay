@@ -19,7 +19,7 @@
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
-    <description><![CDATA[Makes intellij more useful for screen reader users by various features
+    <description><![CDATA[Makes intellij more useful for screen reader users by adding various features
     <ul>
         <li>Play a sound when navigating to a line with a warning</li>
         <li>Play a sound when navigating to a line with an error</li>

@@ -1,6 +1,6 @@
 # IntelliSay
 
-Makes intellij more useful for screen reader users by various features
+Makes intellij more useful for screen reader users by adding various features
 <ul>
 <li>Play a sound when navigating to a line with a warning</li>
 <li>Play a sound when navigating to a line with an error</li>
