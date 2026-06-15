@@ -39,7 +39,7 @@ The standard way for Ubuntu is to use the speech dispatcher.
 Install with the below
 
 ```commandline
-sudo apt-get install speech-dispatch
+sudo apt-get install speech-dispatcher
 ```
 
 Then locate the spd-say command with the below
@@ -48,7 +48,7 @@ Then locate the spd-say command with the below
 which spd-say
 ```
 
-Then create a symlink from your /usr/local/bin folder to the spd-say with the below
+Then create a symlink from your /usr/local/bin folder (or anywhere that's on your PATH environment variable) to the spd-say with the below
 
 ```commandline
 sudo ln -s your-spd-say-location /usr/local/bin/say
