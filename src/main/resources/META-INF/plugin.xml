@@ -11,7 +11,7 @@
        Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
 
     <depends>com.intellij.modules.platform</depends>
-    <depends>com.intellij.java</depends>
+    <depends optional="true" config-file="java.xml">com.intellij.java</depends>
     <depends optional="true" config-file="python.xml">com.intellij.modules.python</depends>
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor email="hbk619@users.noreply.github.com">hbk619</vendor>

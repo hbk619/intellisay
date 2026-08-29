@@ -1,15 +1,16 @@
+import org.jetbrains.intellij.platform.gradle.IntelliJPlatformType
 import org.jetbrains.intellij.platform.gradle.TestFrameworkType
 
 
 plugins {
-    id("org.jetbrains.intellij.platform") version "2.0.1"
+    id("org.jetbrains.intellij.platform") version "2.2.1"
 
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.9.21"
 }
 
 group = "com.hbk619"
-version = "1.1.0"
+version = "1.2.0"
 
 repositories {
     mavenCentral()
@@ -55,6 +56,14 @@ kotlin {
     jvmToolchain(17)
 }
 
+intellijPlatformTesting {
+    runIde {
+        create("runGoLand") {
+            type = IntelliJPlatformType.GoLand
+            version = "2026.2"
+        }
+    }
+}
 
 tasks {
     // Set the JVM compatibility versions
