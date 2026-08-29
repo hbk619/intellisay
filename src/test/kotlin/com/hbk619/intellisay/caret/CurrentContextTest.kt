@@ -77,14 +77,16 @@ class CurrentContextTest: BaseTestCase() {
         UsefulTestCase.assertEquals(listOf(myFixture.project, "Not in a code block", "Context"), queue.calls[0].args)
     }
 
-    fun testInPythonWithoutPythonPlugin() {
+    fun testInPythonWithPythonPlugin() {
         myFixture.configureByFile("something.py")
-
+        repeat(2) {
+            myFixture.performEditorAction(IdeActions.ACTION_EDITOR_MOVE_CARET_DOWN)
+        }
         myFixture.performEditorAction("IntelliSay.AnnounceContext")
 
         val queue = getAudibleQueue()
         UsefulTestCase.assertSize(1, queue.calls)
 
-        UsefulTestCase.assertEquals(listOf(myFixture.project, "Python file detected but python plugin not enabled", "Context"), queue.calls[0].args)
+        UsefulTestCase.assertEquals(listOf(myFixture.project, "Inside method start. Arguments are players of type Game, . Class is Game", "Context"), queue.calls[0].args)
     }
 }
