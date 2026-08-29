@@ -2,7 +2,7 @@ import org.jetbrains.intellij.platform.gradle.TestFrameworkType
 
 
 plugins {
-    id("org.jetbrains.intellij.platform") version "2.0.1"
+    id("org.jetbrains.intellij.platform") version "2.2.1"
 
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.9.21"
